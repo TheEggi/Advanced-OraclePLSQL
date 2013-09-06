@@ -6,6 +6,11 @@ execmod = __import__("exec")
 
 RE_ENTITIES = re.compile("^\\((.+?)/(0):[0-9]+\\) ([0-9]+):[0-9]+ (.+)$", re.M)
 
+# Add the Oracle instant client to the PATH for Sublime.
+# Required for UNIX/Mac
+PATH_ADDITIONS = '/Users/davidhooey/instantclient_11_2/'
+os.environ['PATH'] += ':'
+os.environ['PATH'] += PATH_ADDITIONS
 
 class OracleExecCommand(execmod.ExecCommand):
     def run(self, dsn="", **kwargs):
@@ -18,8 +23,11 @@ class OracleExecCommand(execmod.ExecCommand):
             # Create a string for the in of sql command
             sqlfilter = '"' + ",".join("'%s'" % entity for entity in self.entities.keys()) + '"'
 
-            cmd = ["sqlplus.exe", "-s", dsn, "@", os.path.join(sublime.packages_path(), 'OracleSQL', 'RunSQL.sql'),
-                    self.window.active_view().file_name(), sqlfilter]
+            # Windows
+            # cmd = ["sqlplus.exe", "-s", dsn, "@", os.path.join(sublime.packages_path(), 'OracleSQL', 'RunSQL.sql'), self.window.active_view().file_name(), sqlfilter]
+            
+            # UNIX/Mac
+            cmd = ["sqlplus", "-s", dsn, "@", os.path.join(sublime.packages_path(), 'OracleSQL', 'RunSQL.sql'), self.window.active_view().file_name(), sqlfilter]
 
             super(OracleExecCommand, self).run(cmd, "^Filename: (.+)$", "^\\(.+?/([0-9]+):([0-9]+)\\) [0-9]+:[0-9]+ (.+)$", **kwargs)
 
