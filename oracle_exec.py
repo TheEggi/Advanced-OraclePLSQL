@@ -22,7 +22,18 @@ class OracleExecCommand(execmod.ExecCommand):
 
             # UNIX/Mac
             # cmd = ["sqlplus", "-s", dsn, "@", os.path.join(sublime.packages_path(), 'OracleSQL', 'RunSQL.sql'), self.window.active_view().file_name(), sqlfilter]
-            cmd = ["sqlplus", "-s", dsn, "@", self.window.active_view().file_name(), sqlfilter]
+            runsql = os.path.expanduser('~') + '/Documents/SublimeText3_OracleSQL_RunSQL.sql'
+            if not os.path.exists(runsql):
+                f = open(runsql, "w")
+                f.write('SET LINESIZE 2000\n')
+                f.write('SET PAGESIZE 0\n')
+                f.write('SET VERIFY OFF\n')
+                f.write('SET FEEDBACK ON\n')
+                f.write('@&1\n')
+                f.write('show errors\n')
+                #f.write('SELECT \'Filename: &1\' FROM DUAL;\n')
+                f.close()
+            cmd = ["sqlplus", "-s", dsn, "@", runsql, self.window.active_view().file_name(), sqlfilter]
 
             super(OracleExecCommand, self).run(cmd, "", "^Filename: (.+)$", "^\\(.+?/([0-9]+):([0-9]+)\\) [0-9]+:[0-9]+ (.+)$", **kwargs)
 
