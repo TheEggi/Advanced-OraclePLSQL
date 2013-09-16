@@ -19,15 +19,26 @@ To execute your PL/SQL source on your schema with ST2 Build command, you have to
     {
         "target": "oracle_exec",
         "selector": "source.plsql.oracle",
+        "path": "/usr/local/oracle/instantclient_10_2",
+        "env":
+            {
+                "ORACLE_HOME": "/usr/local/oracle/instantclient_10_2",
+                "DYLD_LIBRARY_PATH": "/usr/local/oracle/instantclient_10_2",
+                "SQLPATH": "/usr/local/oracle/instantclient_10_2",
+                "NLS_LANG": "AMERICAN_AMERICA.UTF8",
+                "TNS_ADMIN": "/usr/local/oracle/network/admin"
+            },
         "variants":
         [
             {
                 "name": "SCHEMA 1",
-                "dsn": "USERNAME/PASSWORD@SCHEMANAME1"
+                "dsn": "USERNAME/PASSWORD@SCHEMANAME1",
+                "encoding": "UTF-8"
             },
             {
                 "name": "SCHEMA 2",
-                "dsn": "USERNAME/PASSWORD@SCHEMANAME2"
+                "dsn": "USERNAME/PASSWORD@SCHEMANAME2",
+                "encoding": "UTF-8"
             }
         ]
     }
