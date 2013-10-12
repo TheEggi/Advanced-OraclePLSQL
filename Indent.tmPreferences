@@ -9,9 +9,9 @@
 	<key>settings</key>
 	<dict>
 		<key>decreaseIndentPattern</key>
-		<string>(?i)^\s*(is|as|begin|end|then|else|elsif|exception)\b</string>
+		<string>(?i)^\s*(end|then|else|elsif|exception)\b</string>
 		<key>increaseIndentPattern</key>
-		<string>(?i)^\s*(is|as|begin|if|then|else|elsif|loop|exception)\b</string>
+		<string>(?i)^\s*(is|begin|if|then|else|elsif|loop|exception)\b</string>
 	</dict>
 	<key>uuid</key>
 	<string>6A30BCDD-20CB-4E24-A1DC-5187E6AA36A6</string>
