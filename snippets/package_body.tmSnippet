@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>content</key>
+    <string>CREATE OR REPLACE package body pkg_${1:name}
+IS
+  ${2:--local variables here, procedures and functions}
+ 
+END pkg_$1;</string>
+    <key>name</key>
+    <string>Package Body</string>
+    <key>scope</key>
+    <string>source.plsql.oracle</string>
+    <key>tabTrigger</key>
+    <string>package body</string>
+</dict>
+</plist>

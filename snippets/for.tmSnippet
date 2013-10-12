@@ -3,15 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>elsif ${1:condition} then
-	$0</string>
+	<string>FOR $1 IN $2</string>
 	<key>name</key>
-	<string>elsif ...</string>
+	<string>for</string>
 	<key>scope</key>
 	<string>source.plsql.oracle</string>
 	<key>tabTrigger</key>
-	<string>e</string>
+	<string>for</string>
 	<key>uuid</key>
-	<string>903299D6-F40E-44A8-BB51-F63F4CFA8B15</string>
+	<string>D0D94340-FC05-4955-A2D4-5E8ECFF51D3C</string>
 </dict>
 </plist>

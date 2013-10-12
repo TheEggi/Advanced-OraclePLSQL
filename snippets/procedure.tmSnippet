@@ -3,17 +3,18 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>IF po_result_code = Corecontainertask.c_result_success
-THEN
-  $0
-END IF;</string>
+	<string>PROCEDURE p_${1:name}($2)
+IS
+BEGIN
+  $3
+END p_$1;</string>
 	<key>name</key>
-	<string>success</string>
+	<string>New Procedure</string>
 	<key>scope</key>
 	<string>source.plsql.oracle</string>
 	<key>tabTrigger</key>
-	<string>success</string>
+	<string>procedure</string>
 	<key>uuid</key>
-	<string>BFC99B3F-C765-44C3-8FF2-4842D6FE3550</string>
+	<string>9C4245C0-3B0F-4285-89EF-3256D30F973D</string>
 </dict>
 </plist>

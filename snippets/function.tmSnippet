@@ -3,16 +3,20 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>if ${1:condition} then
-	$0
-end if;</string>
+	<string>FUNCTION f_${1:name}($2)
+--
+RETURN ${3:RETURN_TYPE}
+IS
+BEGIN
+$4
+END f_$1;</string>
 	<key>name</key>
-	<string>if ... end</string>
+	<string>New Function</string>
 	<key>scope</key>
 	<string>source.plsql.oracle</string>
 	<key>tabTrigger</key>
-	<string>if</string>
+	<string>function</string>
 	<key>uuid</key>
-	<string>3A13DC3D-19E1-4002-9AB6-463C79DFC0C8</string>
+	<string>5873A2DA-C72C-40DB-8859-368CA8B3809E</string>
 </dict>
 </plist>

@@ -3,16 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>loop
-	$0
-end loop;</string>
+	<string>ELSIF ${1:condition} THEN
+	$2</string>
 	<key>name</key>
-	<string>loop ... end</string>
+	<string>elsif ...</string>
 	<key>scope</key>
 	<string>source.plsql.oracle</string>
 	<key>tabTrigger</key>
-	<string>loop</string>
+	<string>elsif</string>
 	<key>uuid</key>
-	<string>1AF4E476-2EB1-42D5-A12B-B9E53EE28D6E</string>
+	<string>903299D6-F40E-44A8-BB51-F63F4CFA8B15</string>
 </dict>
 </plist>

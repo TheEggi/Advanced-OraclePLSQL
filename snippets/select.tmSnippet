@@ -3,18 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>if ${1:condition} then
-	$2
-else
-	$3
-end if;</string>
+	<string>SELECT $1
+  ${2:BULK COLLECT INTO} $3 
+  FROM $4
+	WHERE $5</string>
 	<key>name</key>
-	<string>if ... else ... end</string>
+	<string>select</string>
 	<key>scope</key>
 	<string>source.plsql.oracle</string>
 	<key>tabTrigger</key>
-	<string>ife</string>
+	<string>select</string>
 	<key>uuid</key>
-	<string>959C6497-92BE-4A63-BE61-B05F25C32E4F</string>
+	<string>BFC99B3F-C765-44C3-8FF2-4842D6FE3550</string>
 </dict>
 </plist>

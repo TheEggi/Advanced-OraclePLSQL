@@ -3,15 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>Corelogger.Log_Open_PrintError_Close(pi_pkg_name, l_procname,
-    $0);</string>
+	<string>CASE $1 WHEN $2 THEN $3 ELSE $4 END</string>
 	<key>name</key>
-	<string>log error</string>
+	<string>case</string>
 	<key>scope</key>
 	<string>source.plsql.oracle</string>
 	<key>tabTrigger</key>
-	<string>error</string>
+	<string>case</string>
 	<key>uuid</key>
-	<string>530B58B1-3B40-4C01-8DC0-F56913D9B6D3</string>
+	<string>A693AB6B-B6DC-450A-900B-D8706CB265F4</string>
 </dict>
 </plist>
