@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>content</key>
-    <string>CREATE OR REPLACE package pkg_${1:name}
+    <string>CREATE OR REPLACE PACKAGE pkg_${1:name}
 IS
   $2
 END pkg_$1;</string>

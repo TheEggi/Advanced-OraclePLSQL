@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
     <key>content</key>
-    <string>CREATE OR REPLACE package body pkg_${1:name}
+    <string>CREATE OR REPLACE PACKAGE BODY pkg_${1:name}
 IS
   ${2:--local variables here, procedures and functions}
- 
+
 END pkg_$1;</string>
     <key>name</key>
     <string>Package Body</string>
