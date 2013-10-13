@@ -205,13 +205,13 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?i)\b(end|then|deterministic|exception|when|declare|begin|in|out|nocopy|is|as|exit|open|fetch|into|close|type|rowtype|default|exclusive|mode|lock|record|\.(extend|count|first|last|next|nextval|currval))\b</string>
+			<string>(?i)\b(end|then|deterministic|exception|when|declare|begin|in|out|nocopy|is|as|exit|open|fetch|into|close|subtype|type|rowtype|default|exclusive|mode|lock|record)\b</string>
 			<key>name</key>
 			<string>keyword.other.oracle</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?i)\b(with|select|from|where|order\s+by|group\s+by|((outer|left|right)\s+)?join|asc|desc|update|set|insert|into|values|delete|from|distinct|union|having|limit|table|between|like|of|all|any|exists|rownum|cursor|returning)\b</string>
+			<string>(?i)\b(with|select|from|where|order\s+by|group\s+by|((outer|left|right)\s+)?join|asc|desc|update|set|insert|into|values|delete|from|distinct|union|minus|intersect|having|limit|table|between|like|of|all|any|exists|rownum|cursor|returning)\b</string>
 			<key>name</key>
 			<string>keyword.other.sql.oracle</string>
 		</dict>
