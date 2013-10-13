@@ -109,7 +109,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?i)^\s*(function|procedure)\s+([-a-z0-9_]+)</string>
+			<string>(?i)^\s*(function|procedure)\s+(\w{1,29})</string>
 			<key>name</key>
 			<string>meta.function.oracle</string>
 		</dict>
@@ -149,12 +149,42 @@
 			<key>name</key>
 			<string>support.function.oracle</string>
 		</dict>
-		<dict>
-			<key>match</key>
-			<string>(?i)\b(avg|count|sum|max|min|nvl|chr|trim|to_date|to_char|lpad|ltrim|rpad|rtrim|trunc|to_number|extractvalue|sign|abs|floor|mod|ascii|coalesce)\b</string>
-			<key>name</key>
-			<string>support.function.builtin.oracle</string>
-		</dict>
+    <dict>
+      <key>match</key>
+      <string>(?i)\b(ascii|asciistr|chr|compose|concat|convert|decompose|dump|initcap|instr|instrb|instrc|instr2|instr4|length|lengthb|lengthc|length2|length4|lower|lpad|ltrim|nchr|replace|rpad|rtrim|soundex|substr|translate|trim|upper|vsize)\b</string>
+      <key>name</key>
+      <string>support.function.builtin.oracle</string>
+    </dict>
+    <dict>
+      <key>match</key>
+      <string>(?i)\b(add_months|current_date|current_timestamp|dbtimezone|from_tz|last_day|localtimestamp|months_between|new_time|next_day|round|sessiontimezone|sysdate|to_date|trunc|tz_offset|systimestamp|to_char)\b</string>
+      <key>name</key>
+      <string>support.function.builtin.oracle</string>
+    </dict>
+    <dict>
+      <key>match</key>
+      <string>(?i)\b(bfilename|cardinality|coalesce|decode|empty_blob|empty_clob|group_id|lag|lead|listagg|lnnvl|nanvl|nullif|nvl|nvl2|sys_context|uid|user|userenv)\b</string>
+      <key>name</key>
+      <string>support.function.builtin.oracle</string>
+    </dict>
+    <dict>
+      <key>match</key>
+      <string>(?i)\b(bin_to_num|cast|chartorowid|from_tz|hextoraw|numtodsinterval|numtoyminterval|rawtohex|to_char|to_clob|to_date|to_dsinterval|to_lob|to_multi_byte|to_nclob|to_number|to_single_byte|to_timestamp|to_timestamp_tz|to_yminterval)\b</string>
+      <key>name</key>
+      <string>support.function.builtin.oracle</string>
+    </dict>
+    <dict>
+      <key>match</key>
+      <string>(?i)\b(abs|acos|asin|atan|atan2|avg|bin_to_num|bitand|ceil|corr|cos|cosh|covar_pop|covar_samp|count|cume_dist|dense_rank|exp|extract|floor|greatest|least|ln|log|max|median|min|mod|power|rank|remainder|round|sign|sin|sinh|sqrt|stddev|sum|tan|tanh|trunc|var_pop|var_samp|variance)\b</string>
+      <key>name</key>
+      <string>support.function.builtin.oracle</string>
+    </dict>
+    <dict>
+      <key>match</key>
+      <string>(?i)\b(\.(count|delete|exists|extend|first|last|limit|next|prior|trim))\b</string>
+      <key>name</key>
+      <string>support.function.collection.oracle</string>
+    </dict>
 		<dict>
 			<key>match</key>
 			<string>(?i)\b(sql|sqlcode)\b</string>
@@ -163,19 +193,19 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?i)\b(p(i|o|io)_[-a-z0-9_]+)\b</string>
+			<string>(?i)\b((i|o|io)p_\w+)\b</string>
 			<key>name</key>
 			<string>variable.parameter.oracle</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?i)\b(l_[-a-z0-9_]+)\b</string>
+			<string>(?i)\b(v(c|t|n|v)_\w{1,27})\b</string>
 			<key>name</key>
 			<string>variable.other.oracle</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?i)\b(end|then|deterministic|exception|when|others|raise|declare|begin|in|out|nocopy|is|as|exit|open|fetch|into|close|type|rowtype|default|exclusive|mode|lock|record|\.(extend|count|first|last|next|nextval|currval))\b</string>
+			<string>(?i)\b(end|then|deterministic|exception|when|declare|begin|in|out|nocopy|is|as|exit|open|fetch|into|close|type|rowtype|default|exclusive|mode|lock|record|\.(extend|count|first|last|next|nextval|currval))\b</string>
 			<key>name</key>
 			<string>keyword.other.oracle</string>
 		</dict>
@@ -187,19 +217,19 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?i)\b(no_data_found|too_many_rows|others|value_error)\b</string>
+			<string>(?i)\b(access_into_null|case_not_found|collection_is_null|cursor_already_open|dup_val_on_index|invalid_cursor|invalid_number|login_denied|no_data_found|not_logged_on|program_error|rowtype_mismatch|self_is_null|storage_error|subscript_beyond_count|subscript_outside_limit|sys_invalid_rowid|timeout_on_resource|too_many_rows|value_error|zero_divide|others)\b</string>
 			<key>name</key>
 			<string>support.type.exception.sql.oracle</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?i)\b(dbms_lock|dbms_output)\b</string>
+			<string>(?i)\b(dbms_\w+.\w+|utl_\w+.\w+|owa_\w+.\w+)\b</string>
 			<key>name</key>
 			<string>support.class.oracle</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?i)\b(put_line|raise_application_error)\b</string>
+			<string>(?i)\b(raise|raise_application_error)\b</string>
 			<key>name</key>
 			<string>support.function.oracle</string>
 		</dict>
@@ -211,20 +241,52 @@
 			<key>name</key>
 			<string>string.quoted.single.oracle</string>
 		</dict>
-		<dict>
-			<key>begin</key>
-			<string>"</string>
-			<key>end</key>
-			<string>"</string>
-			<key>name</key>
-			<string>string.quoted.double.oracle</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(?i)\b(number|decimal|integer|smallint|float|long|char|varchar2|varchar|boolean|date|xmltype|blob|clob|binary_integer)\b</string>
-			<key>name</key>
-			<string>storage.type.oracle</string>
-		</dict>
+    <dict>
+      <key>begin</key>
+      <string>q'\[</string>
+      <key>end</key>
+      <string>\]'</string>
+      <key>name</key>
+      <string>string.quoted.q1.oracle</string>
+    </dict>
+    <dict>
+      <key>begin</key>
+      <string>q'\(</string>
+      <key>end</key>
+      <string>\)'</string>
+      <key>name</key>
+      <string>string.quoted.q2.oracle</string>
+    </dict>
+    <dict>
+      <key>begin</key>
+      <string>q'\{</string>
+      <key>end</key>
+      <string>\}'</string>
+      <key>name</key>
+      <string>string.quoted.q3.oracle</string>
+    </dict>
+    <dict>
+      <key>begin</key>
+      <string>q'&lt;</string>
+      <key>end</key>
+      <string>&gt;'</string>
+      <key>name</key>
+      <string>string.quoted.q4.oracle</string>
+    </dict>
+    <dict>
+      <key>begin</key>
+      <string>q'\!</string>
+      <key>end</key>
+      <string>\!'</string>
+      <key>name</key>
+      <string>string.quoted.q5.oracle</string>
+    </dict>
+    <dict>
+      <key>match</key>
+      <string>(?i)\b(char|varchar2|nchar|nvarchar2|date|timestamp(\s+with(\s+local)?\s+time\s+zone)?|interval\s+(year\s+to\s+month|day\s+to\s+second)|blob|clob|nclob|bfile|long|long\s+raw|raw|number|float|binary_(float|double|integer)|rowid|urowid)\b</string>
+      <key>name</key>
+      <string>storage.type.oracle</string>
+    </dict>
 	</array>
 	<key>scopeName</key>
 	<string>source.plsql.oracle</string>
