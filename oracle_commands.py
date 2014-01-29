@@ -1,6 +1,6 @@
 import sublime
 import sublime_plugin
-import oracle_lib
+from . import oracle_lib
 
 
 class OracleGotoBodyCommand(sublime_plugin.TextCommand):

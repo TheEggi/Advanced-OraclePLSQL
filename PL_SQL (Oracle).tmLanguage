@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>fileTypes</key>
@@ -7,6 +7,15 @@
 		<string>sql</string>
 		<string>ddl</string>
 		<string>dml</string>
+		<string>pks</string>
+		<string>pkb</string>
+		<string>prc</string>
+		<string>fnc</string>
+		<string>vw</string>
+		<string>trg</string>
+		<string>tps</string>
+		<string>tpb</string>
+		<string>fk</string>
 	</array>
 	<key>foldingStartMarker</key>
 	<string>(?i)^\s*(begin|if|loop)\b</string>
@@ -90,7 +99,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?i)\b(type)\s+"([^"]+)"</string>
+			<string>(?i)^\s*(type)\s+(\w{1,30})\b</string>
 			<key>name</key>
 			<string>meta.type.oracle</string>
 		</dict>
@@ -107,11 +116,11 @@
 					<key>name</key>
 					<string>entity.name.function.oracle</string>
 				</dict>
-        <key>3</key>
-        <dict>
-          <key>name</key>
-          <string>invalid.oracle</string>
-        </dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>invalid.oracle</string>
+				</dict>
 			</dict>
 			<key>match</key>
 			<string>(?i)^\s*(function|procedure)\s+(\w{1,30}|(\w{31,}))\b</string>
@@ -154,100 +163,100 @@
 			<key>name</key>
 			<string>support.function.builtin.other.oracle</string>
 		</dict>
-    <dict>
-      <key>match</key>
-      <string>(?i)\b(avg|collect|corr|corr_\w+|count|covar_(pop|samp)|cume_dist|dense_rank|first|group_id|grouping|grouping_id|last|max|median|min|percentile_cont|percentile_disc|percent_rank|rank|regr_\w+|stats_binomial_test|stats_crosstab|stats_f_test|stats_ks_test|stats_mode|stats_mw_test|stats_one_way_anova|stats_t_test_\w+|stats_wsr_test|stddev|stddev_pop|stddev_samp|sum|var_pop|var_samp|variance)\b</string>
-      <key>name</key>
-      <string>support.function.builtin.aggregate.oracle</string>
-    </dict>
-    <dict>
-      <key>match</key>
-      <string>(?i)\b(ascii|asciistr|chr|compose|concat|convert|decompose|dump|initcap|instr|instrb|instrc|instr2|instr4|length|lengthb|lengthc|length2|length4|lower|lpad|ltrim|nchr|replace|rpad|rtrim|soundex|substr|translate|trim|upper|vsize)\b</string>
-      <key>name</key>
-      <string>support.function.builtin.char.oracle</string>
-    </dict>
-    <dict>
-      <key>match</key>
-      <string>(?i)\b(add_months|current_date|current_timestamp|dbtimezone|from_tz|last_day|localtimestamp|months_between|new_time|next_day|round|sessiontimezone|sysdate|to_date|trunc|tz_offset|systimestamp|to_char)\b</string>
-      <key>name</key>
-      <string>support.function.builtin.date.oracle</string>
-    </dict>
-    <dict>
-      <key>match</key>
-      <string>(?i)\b(bfilename|cardinality|coalesce|decode|empty_(blob|clob)|group_id|lag|lead|listagg|lnnvl|nanvl|nullif|nvl|nvl2|sys_(context|guid|typeid)|uid|user|userenv|cardinality|collect|powermultiset(_by_cardinality)?|set|dump|ora_hash|vsize)\b</string>
-      <key>name</key>
-      <string>support.function.builtin.advanced.oracle</string>
-    </dict>
-    <dict>
-      <key>match</key>
-      <string>(?i)\b(bin_to_num|cast|chartorowid|from_tz|hextoraw|numtodsinterval|numtoyminterval|rawtohex|to_char|to_clob|to_date|to_dsinterval|to_lob|to_multi_byte|to_nclob|to_number|to_single_byte|to_timestamp|to_timestamp_tz|to_yminterval)\b</string>
-      <key>name</key>
-      <string>support.function.builtin.convert.oracle</string>
-    </dict>
-    <dict>
-      <key>match</key>
-      <string>(?i)\b(abs|acos|asin|atan|atan2|avg|bin_to_num|bit_(and|or|xor)|ceil|corr|cos|cosh|covar_pop|covar_samp|count|cume_dist|dense_rank|exp|extract|floor|greatest|least|ln|log|max|median|min|mod|power|rank|remainder|round|sign|sin|sinh|sqrt|stddev|sum|tan|tanh|trunc|var_pop|var_samp|variance)\b</string>
-      <key>name</key>
-      <string>support.function.builtin.math.oracle</string>
-    </dict>
-    <dict>
-      <key>match</key>
-      <string>(?i)\b(\.(count|delete|exists|extend|first|last|limit|next|prior|trim))\b</string>
-      <key>name</key>
-      <string>support.function.builtin.collection.oracle</string>
-    </dict>
-    <dict>
-      <key>match</key>
-      <string>(?i)\b(cluster_id|cluster_probability|cluster_set|feature_id|feature_set|feature_value|prediction|prediction_cost|prediction_details|prediction_probability|prediction_set)\b</string>
-      <key>name</key>
-      <string>support.function.builtin.data_mining.oracle</string>
-    </dict>
-    <dict>
-      <key>match</key>
-      <string>(?i)\b(appendchildxml|deletexml|depth|extract (xml)|existsnode|extractvalue|insertchildxml|insertxmlbefore|path|sys_dburigen|sys_xmlagg|sys_xmlgen|updatexml|xmlagg|xmlcdata|xmlcolattval|xmlcomment|xmlconcat|xmlforest|xmlparse|xmlpi|xmlquery|xmlroot|xmlsequence|xmlserialize|xmltable|xmltransform)\b</string>
-      <key>name</key>
-      <string>support.function.builtin.xml.oracle</string>
-    </dict>
-    <dict>
-      <key>match</key>
-      <string>(?i)\b(pragma\s+(autonomous_transaction|serially_reusable|restrict_refrences|exception_init|inline))\b</string>
-      <key>name</key>
-      <string>keyword.other.pragma.oracle</string>
-    </dict>
 		<dict>
 			<key>match</key>
-			<string>(?i)\b((i|o|io)p_(\w{1,27}|(\w{28,})))\b</string>
+			<string>(?i)\b(avg|collect|corr|corr_\w+|count|covar_(pop|samp)|cume_dist|dense_rank|first|group_id|grouping|grouping_id|last|max|median|min|percentile_cont|percentile_disc|percent_rank|rank|regr_\w+|stats_binomial_test|stats_crosstab|stats_f_test|stats_ks_test|stats_mode|stats_mw_test|stats_one_way_anova|stats_t_test_\w+|stats_wsr_test|stddev|stddev_pop|stddev_samp|sum|var_pop|var_samp|variance)\b</string>
+			<key>name</key>
+			<string>support.function.builtin.aggregate.oracle</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(ascii|asciistr|chr|compose|concat|convert|decompose|dump|initcap|instr|instrb|instrc|instr2|instr4|length|lengthb|lengthc|length2|length4|lower|lpad|ltrim|nchr|replace|rpad|rtrim|soundex|substr|translate|trim|upper|vsize)\b</string>
+			<key>name</key>
+			<string>support.function.builtin.char.oracle</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(add_months|current_date|current_timestamp|dbtimezone|from_tz|last_day|localtimestamp|months_between|new_time|next_day|round|sessiontimezone|sysdate|to_date|trunc|tz_offset|systimestamp|to_char)\b</string>
+			<key>name</key>
+			<string>support.function.builtin.date.oracle</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(bfilename|cardinality|coalesce|decode|empty_(blob|clob)|group_id|lag|lead|listagg|lnnvl|nanvl|nullif|nvl|nvl2|sys_(context|guid|typeid)|uid|user|userenv|cardinality|collect|powermultiset(_by_cardinality)?|set|dump|ora_hash|vsize)\b</string>
+			<key>name</key>
+			<string>support.function.builtin.advanced.oracle</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(bin_to_num|cast|chartorowid|from_tz|hextoraw|numtodsinterval|numtoyminterval|rawtohex|to_char|to_clob|to_date|to_dsinterval|to_lob|to_multi_byte|to_nclob|to_number|to_single_byte|to_timestamp|to_timestamp_tz|to_yminterval)\b</string>
+			<key>name</key>
+			<string>support.function.builtin.convert.oracle</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(abs|acos|asin|atan|atan2|avg|bin_to_num|bit_(and|or|xor)|ceil|corr|cos|cosh|covar_pop|covar_samp|count|cume_dist|dense_rank|exp|extract|floor|greatest|least|ln|log|max|median|min|mod|power|rank|remainder|round|sign|sin|sinh|sqrt|stddev|sum|tan|tanh|trunc|var_pop|var_samp|variance)\b</string>
+			<key>name</key>
+			<string>support.function.builtin.math.oracle</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(\.(count|delete|exists|extend|first|last|limit|next|prior|trim))\b</string>
+			<key>name</key>
+			<string>support.function.builtin.collection.oracle</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(cluster_id|cluster_probability|cluster_set|feature_id|feature_set|feature_value|prediction|prediction_cost|prediction_details|prediction_probability|prediction_set)\b</string>
+			<key>name</key>
+			<string>support.function.builtin.data_mining.oracle</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(appendchildxml|deletexml|depth|extract (xml)|existsnode|extractvalue|insertchildxml|insertxmlbefore|path|sys_dburigen|sys_xmlagg|sys_xmlgen|updatexml|xmlagg|xmlcdata|xmlcolattval|xmlcomment|xmlconcat|xmlforest|xmlparse|xmlpi|xmlquery|xmlroot|xmlsequence|xmlserialize|xmltable|xmltransform)\b</string>
+			<key>name</key>
+			<string>support.function.builtin.xml.oracle</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(pragma\s+(autonomous_transaction|serially_reusable|restrict_refrences|exception_init|inline))\b</string>
+			<key>name</key>
+			<string>keyword.other.pragma.oracle</string>
+		</dict>
+		<dict>
 			<key>captures</key>
-      <dict>
-        <key>4</key>
-        <dict>
-          <key>name</key>
-          <string>invalid.oracle</string>
-        </dict>
-      </dict>
-      <key>name</key>
+			<dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>invalid.oracle</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?i)\b(p(?:(i|o|io))?_(\w{1,27}|(\w{28,})))\b</string>
+			<key>name</key>
 			<string>variable.parameter.oracle</string>
 		</dict>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>invalid.oracle</string>
+				</dict>
+			</dict>
 			<key>match</key>
-			<string>(?i)\b((c|g|v)(c|t|n|v)_(\w{1,27}|(\w{28,})))\b</string>
-      <key>captures</key>
-      <dict>
-        <key>5</key>
-        <dict>
-          <key>name</key>
-          <string>invalid.oracle</string>
-        </dict>
-      </dict>
+			<string>(?i)\b((l|g)_(\w{1,27}|(\w{28,})))\b</string>
 			<key>name</key>
 			<string>variable.standard.oracle</string>
 		</dict>
-    <dict>
-      <key>match</key>
-      <string>(?i)\b(connect\s+by\s+(nocycle\s+)?(prior|level)|connect_by_(root|icycle)|level|start\s+with|)\b</string>
-      <key>name</key>
-      <string>keyword.hierarchical.sql.oracle</string>
-    </dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(connect\s+by\s+(nocycle\s+)?(prior|level)|connect_by_(root|icycle)|level|start\s+with|)\b</string>
+			<key>name</key>
+			<string>keyword.hierarchical.sql.oracle</string>
+		</dict>
 		<dict>
 			<key>match</key>
 			<string>(?i)\b(end|then|deterministic|exception|when|declare|begin|in|out|nocopy|is|as|exit|open|fetch|into|close|subtype|type|rowtype|default|exclusive|mode|lock|record|index\s+by)\b</string>
@@ -256,7 +265,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-      <string>(?i)\b(with|select|from|where|order\s+(siblings\s+)?by|group\s+by|rollup|cube|((outer|left|right)\s+)?join|asc|desc|update|set|insert|into|values|delete|from|distinct|union|minus|intersect|having|limit|table|between|like|of|all|any|exists|rownum|cursor|returning)\b</string>
+			<string>(?i)\b(with|select|from|where|order\s+(siblings\s+)?by|group\s+by|rollup|cube|((outer|left|right)\s+)?join|asc|desc|update|set|insert|into|values|delete|from|distinct|union|minus|intersect|having|limit|table|between|like|of|all|any|exists|rownum|cursor|returning)\b</string>
 			<key>name</key>
 			<string>keyword.other.sql.oracle</string>
 		</dict>
@@ -267,16 +276,16 @@
 			<string>support.type.exception.oracle</string>
 		</dict>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>support.class.oracle</string>
+				</dict>
+			</dict>
 			<key>match</key>
 			<string>(?i)\b((dbms|utl|owa)_\w+.(\w+))\b</string>
-      <key>captures</key>
-      <dict>
-        <key>3</key>
-        <dict>
-          <key>name</key>
-          <string>support.class.oracle</string>
-        </dict>
-      </dict>
 			<key>name</key>
 			<string>support.function.oracle</string>
 		</dict>
@@ -294,52 +303,52 @@
 			<key>name</key>
 			<string>string.quoted.single.oracle</string>
 		</dict>
-    <dict>
-      <key>begin</key>
-      <string>q'\[</string>
-      <key>end</key>
-      <string>\]'</string>
-      <key>name</key>
-      <string>string.quoted.q.oracle</string>
-    </dict>
-    <dict>
-      <key>begin</key>
-      <string>q'\(</string>
-      <key>end</key>
-      <string>\)'</string>
-      <key>name</key>
-      <string>string.quoted.q.oracle</string>
-    </dict>
-    <dict>
-      <key>begin</key>
-      <string>q'\{</string>
-      <key>end</key>
-      <string>\}'</string>
-      <key>name</key>
-      <string>string.quoted.q.oracle</string>
-    </dict>
-    <dict>
-      <key>begin</key>
-      <string>q'&lt;</string>
-      <key>end</key>
-      <string>&gt;'</string>
-      <key>name</key>
-      <string>string.quoted.q.oracle</string>
-    </dict>
-    <dict>
-      <key>begin</key>
-      <string>q'\!</string>
-      <key>end</key>
-      <string>\!'</string>
-      <key>name</key>
-      <string>string.quoted.q.oracle</string>
-    </dict>
-    <dict>
-      <key>match</key>
-      <string>(?i)\b(char|varchar2|nchar|nvarchar2|date|timestamp(\s+with(\s+local)?\s+time\s+zone)?|interval\s+(year\s+to\s+month|day\s+to\s+second)|blob|clob|nclob|bfile|long|long\s+raw|raw|number|float|binary_(float|double|integer)|pls_(float|double|integer)|rowid|urowid|vararray)\b</string>
-      <key>name</key>
-      <string>storage.type.builtin.oracle</string>
-    </dict>
+		<dict>
+			<key>begin</key>
+			<string>q'\[</string>
+			<key>end</key>
+			<string>\]'</string>
+			<key>name</key>
+			<string>string.quoted.q.oracle</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>q'\(</string>
+			<key>end</key>
+			<string>\)'</string>
+			<key>name</key>
+			<string>string.quoted.q.oracle</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>q'\{</string>
+			<key>end</key>
+			<string>\}'</string>
+			<key>name</key>
+			<string>string.quoted.q.oracle</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>q'&lt;</string>
+			<key>end</key>
+			<string>&gt;'</string>
+			<key>name</key>
+			<string>string.quoted.q.oracle</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>q'\!</string>
+			<key>end</key>
+			<string>\!'</string>
+			<key>name</key>
+			<string>string.quoted.q.oracle</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?i)\b(char|varchar2|nchar|nvarchar2|date|timestamp(\s+with(\s+local)?\s+time\s+zone)?|interval\s+(year\s+to\s+month|day\s+to\s+second)|blob|clob|nclob|bfile|long|long\s+raw|raw|number|float|binary_(float|double|integer)|pls_(float|double|integer)|rowid|urowid|vararray)\b</string>
+			<key>name</key>
+			<string>storage.type.builtin.oracle</string>
+		</dict>
 	</array>
 	<key>scopeName</key>
 	<string>source.plsql.oracle</string>
