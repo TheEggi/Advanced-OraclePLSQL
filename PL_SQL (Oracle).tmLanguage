@@ -345,7 +345,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?i)\b(char|varchar2|nchar|nvarchar2|date|timestamp(\s+with(\s+local)?\s+time\s+zone)?|interval\s+(year\s+to\s+month|day\s+to\s+second)|blob|clob|nclob|bfile|long|long\s+raw|raw|number|float|binary_(float|double|integer)|pls_(float|double|integer)|rowid|urowid|vararray)\b</string>
+			<string>(?i)\b(char|varchar2|nchar|nvarchar2|boolean|date|timestamp(\s+with(\s+local)?\s+time\s+zone)?|interval\s+(year\s+to\s+month|day\s+to\s+second)|blob|clob|nclob|bfile|long|long\s+raw|raw|number|integer|float|binary_(float|double|integer)|pls_(float|double|integer)|rowid|urowid|vararray)\b</string>
 			<key>name</key>
 			<string>storage.type.builtin.oracle</string>
 		</dict>
