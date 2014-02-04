@@ -143,7 +143,7 @@
             "name": "support.function.builtin.xml.oracle"
         }, 
         {
-            "match": "(?i)\\b(pragma\\s+(autonomous_transaction|serially_reusable|restrict_refrences|exception_init|inline))\\b", 
+            "match": "(?i)\\b(pragma\\s+(autonomous_transaction|serially_reusable|restrict_references|exception_init|inline))\\b", 
             "name": "keyword.other.pragma.oracle"
         }, 
         {
@@ -169,11 +169,11 @@
             "name": "keyword.hierarchical.sql.oracle"
         }, 
         {
-            "match": "(?i)\\b(end|then|deterministic|exception|when|declare|begin|in|out|nocopy|is|as|exit|open|fetch|into|close|subtype|type|rowtype|default|exclusive|mode|lock|record|index\\s+by)\\b", 
+            "match": "(?i)\\b(end|then|deterministic|exception|when|declare|begin|in|out|nocopy|is|as|exit|open|fetch|into|close|subtype|type|rowtype|default|exclusive|mode|lock|record|index\\s+by|result_cache)\\b", 
             "name": "keyword.other.oracle"
         }, 
         {
-            "match": "(?i)\\b(with|select|from|where|order\\s+(siblings\\s+)?by|group\\s+by|rollup|cube|((outer|left|right)\\s+)?join|asc|desc|update|set|insert|into|values|delete|from|distinct|union|minus|intersect|having|limit|table|between|like|of|all|any|exists|rownum|cursor|returning)\\b", 
+            "match": "(?i)\\b(with|select|from|where|order\\s+(siblings\\s+)?by|group\\s+by|rollup|cube|((left|right|cross)\\s+(outer\\s+)?)?join|on|asc|desc|update|set|insert|into|values|delete|from|distinct|union|minus|intersect|having|limit|table|between|like|of|all|any|exists|rownum|cursor|returning)\\b", 
             "name": "keyword.other.sql.oracle"
         }, 
         {
