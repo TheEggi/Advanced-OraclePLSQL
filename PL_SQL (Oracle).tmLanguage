@@ -165,7 +165,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?i)\b(avg|collect|corr|corr_\w+|count|covar_(pop|samp)|cume_dist|dense_rank|first|group_id|grouping|grouping_id|last|max|median|min|percentile_cont|percentile_disc|percent_rank|rank|regr_\w+|stats_binomial_test|stats_crosstab|stats_f_test|stats_ks_test|stats_mode|stats_mw_test|stats_one_way_anova|stats_t_test_\w+|stats_wsr_test|stddev|stddev_pop|stddev_samp|sum|var_pop|var_samp|variance)\b</string>
+			<string>(?i)\b(avg|collect|corr|corr_\w+|count|covar_(pop|samp)|cume_dist|dense_rank|first|group_id|grouping|grouping_id|last|max|median|min|percentile_cont|percentile_disc|percent_rank|rank|regr_\w+|row_number|stats_binomial_test|stats_crosstab|stats_f_test|stats_ks_test|stats_mode|stats_mw_test|stats_one_way_anova|stats_t_test_\w+|stats_wsr_test|stddev|stddev_pop|stddev_samp|sum|var_pop|var_samp|variance)\b</string>
 			<key>name</key>
 			<string>support.function.builtin.aggregate.oracle</string>
 		</dict>
@@ -265,7 +265,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?i)\b(with|select|from|where|order\s+(siblings\s+)?by|group\s+by|rollup|cube|((left|right|cross)\s+(outer\s+)?)?join|on|asc|desc|update|set|insert|into|values|delete|from|distinct|union|minus|intersect|having|limit|table|between|like|of|all|any|exists|rownum|cursor|returning)\b</string>
+			<string>(?i)\b(with|select|from|where|order\s+(siblings\s+)?by|group\s+by|rollup|cube|((left|right|cross)\s+(outer\s+)?)?join|on|asc|desc|update|set|insert|into|values|delete|from|distinct|union|minus|intersect|having|limit|table|between|like|of|all|any|exists|rownum|cursor|returning|over|partition\s+by|)\b</string>
 			<key>name</key>
 			<string>keyword.other.sql.oracle</string>
 		</dict>
