@@ -1,4 +1,5 @@
 *.cache
 *.pyc
+*.JSON-tmLanguage
 .DS_Store
 package-metadata.json
