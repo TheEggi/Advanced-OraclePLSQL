@@ -3,11 +3,29 @@
 <plist version="1.0">
 <dict>
     <key>content</key>
-    <string>CREATE OR REPLACE PACKAGE BODY pkg_${1:name}
-IS
-  ${2:--local variables here, procedures and functions}
+    <string>
+ create or replace package body ${1:name} is
+/** 
+* ${2:--description of the package}
+* @headcom
+*/
 
-END pkg_$1;</string>
+${3:--local variables here, procedures and functions}
+
+/**
+* Used to determine package version.
+* 
+* @return Returns version of package.
+*/
+function getPackageVersion
+  return varchar2 is
+begin
+  return '($Rev$)';
+end getPackageVersion;
+
+end ${1:name};
+/
+/</string>
     <key>name</key>
     <string>Package Body</string>
     <key>scope</key>

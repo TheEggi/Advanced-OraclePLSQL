@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>CASE $1 WHEN $2 THEN $3 ELSE $4 END</string>
+	<string>case $1 when $2 then $3 else $4 end</string>
 	<key>name</key>
 	<string>case</string>
 	<key>scope</key>

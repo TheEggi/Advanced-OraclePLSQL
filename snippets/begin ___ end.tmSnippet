@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>content</key>
-    <string>BEGIN
+    <string>begin
   ${1:--your code here--}
 END;</string>
     <key>name</key>

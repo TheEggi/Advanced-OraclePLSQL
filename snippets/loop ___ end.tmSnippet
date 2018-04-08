@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>LOOP
+	<string>loop
 	$1
-END LOOP;</string>
+end loop;</string>
 	<key>name</key>
 	<string>loop ... end</string>
 	<key>scope</key>

@@ -3,8 +3,8 @@
 <plist version="1.0">
 <dict>
     <key>content</key>
-    <string>DELETE FROM ${1:table}
-${2:WHERE }</string>
+    <string>delete from ${1:table}
+${2:where }</string>
     <key>name</key>
     <string>delete</string>
     <key>scope</key>

@@ -3,8 +3,8 @@
 <plist version="1.0">
 <dict>
     <key>content</key>
-    <string>INSERT INTO ${1:table} ${2:(${3:column_names})}
-VALUES
+    <string>insert into ${1:table} ${2:(${3:column_names})}
+values
   ${4:(${5:values})}</string>
     <key>name</key>
     <string>insert</string>

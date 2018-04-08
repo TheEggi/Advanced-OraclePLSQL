@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>ELSIF ${1:condition} THEN
+	<string>elsif ${1:condition} then
 	$2</string>
 	<key>name</key>
 	<string>elsif ...</string>

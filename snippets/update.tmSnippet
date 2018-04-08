@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>content</key>
-    <string>UPDATE ${1:table}
-  SET $2
-${3:WHERE }</string>
+    <string>update ${1:table}
+  set $2
+${3:where }</string>
     <key>name</key>
     <string>update</string>
     <key>scope</key>

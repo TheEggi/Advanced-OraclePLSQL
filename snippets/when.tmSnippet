@@ -3,8 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>WHEN ${1:CONDITION}
-THEN
+	<string>when ${1:condition}
+then
 	$2
 	</string>
 	<key>name</key>

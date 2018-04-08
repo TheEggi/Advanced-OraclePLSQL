@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>IF ${1:condition} THEN
+	<string>if ${1:condition} then
 	$0
-END IF;</string>
+end if;</string>
 	<key>name</key>
 	<string>if ... end</string>
 	<key>scope</key>

@@ -8,16 +8,16 @@ RE_ENTITIES = re.compile("^\\((.+?)/(0):[0-9]+\\) ([0-9]+):[0-9]+ (.+)$", re.M)
 
 
 class OracleExecCommand(execmod.ExecCommand):
-    def run(self, dsn="", **kwargs):
+    def run(self, dsn="", sql_exec_path="", **kwargs):
         if not dsn and not kwargs.get("kill", False):
-            # if cmd is empty, open the command_palette with the available build list
+            # if dsn is empty, open the command_palette with the available build list
             self.window.run_command("show_overlay", {"overlay": "command_palette", "text": "Build: " + kwargs.get("prefix", "")})
         else:
             # Find entities declaration in source
             self.entities = oracle_lib.find_entities(self.window.active_view())
-
+            print('123')
             (directory, filename) = os.path.split(self.window.active_view().file_name())
-            cmd = ["sqlplus", "-s", dsn, "@", os.path.join(sublime.packages_path(), 'OraclePLSQL', 'RunSQL.sql'), '"'+filename+'"']
+            cmd = [sql_exec_path, "-s", dsn, "@", os.path.join(sublime.packages_path(), 'OraclePLSQL', 'RunSQL.sql'), '"'+filename+'"']
 
             super(OracleExecCommand, self).run(cmd, None, "^Filename: (.+)$", "^([0-9]+)/([0-9]+) (.+)$", working_dir=directory, **kwargs)
 

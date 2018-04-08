@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>SELECT $1
-  ${2:BULK COLLECT INTO} $3 
-  FROM $4
-	WHERE $5</string>
+	<string>select $1
+  ${2:bulk collect into} $3 
+  from $4
+	where $5</string>
 	<key>name</key>
 	<string>select</string>
 	<key>scope</key>

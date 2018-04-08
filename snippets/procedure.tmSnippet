@@ -3,11 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>PROCEDURE p_${1:name}($2)
-IS
-BEGIN
-  $3
-END p_$1;</string>
+	<string>/**
+* ${1:--description}
+* 
+*/
+procedure ${2:name}(${3:--parameters})
+is
+${4:--variables}
+begin
+  $5
+end ${1:name};</string>
 	<key>name</key>
 	<string>New Procedure</string>
 	<key>scope</key>

@@ -3,13 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>FUNCTION f_${1:name}($2)
---
-RETURN ${3:RETURN_TYPE}
-IS
-BEGIN
-$4
-END f_$1;</string>
+	<string>/**
+* ${1:--description}
+* 
+*/
+function ${2:name}(${3:--parameters})
+return ${4:--return type}
+is
+${5:--variables}
+begin
+  $6
+end ${1:name};</string>
 	<key>name</key>
 	<string>New Function</string>
 	<key>scope</key>

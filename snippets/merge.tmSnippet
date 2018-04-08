@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
   <key>content</key>
-  <string>MERGE INTO ${1:some_table} ${2:alias} 
-USING ( ${3:another_table_or_select} ) ${4:alias}
-ON ( $2.$5 = $4.$6 )
-WHEN NOT MATCHED
-THEN
-   INSERT     ( $7 )
-       VALUES ( $8 )
-WHEN MATCHED
-THEN
+  <string>merge into ${1:some_table} ${2:alias} 
+using ( ${3:another_table_or_select} ) ${4:alias}
+on ( $2.$5 = $4.$6 )
+when not matched
+then
+   insert     ( $7 )
+       values ( $8 )
+when matched
+then
    $9;</string>
   <key>name</key>
   <string>merge</string>

@@ -15,6 +15,7 @@ file_extensions:
   - tps
   - tpb
   - fk
+  - view
 
 scope: source.plsql.oracle
 contexts:
@@ -34,12 +35,23 @@ contexts:
         1: keyword.other.oracle
         2: keyword.other.oracle
 
-    - match: (?i)\b(package)(\s+body)?\s+(\S+)
+    - match: (?i)\b(package|type)(\s+body)?\s+(\S+)(\s*(force)?\s+(authid)?\s+(current_user|.*?)?\s+(under)\s+(\w+))?
       scope: meta.package.oracle
       captures:
         1: keyword.other.oracle
         2: keyword.other.oracle
         3: entity.name.class.oracle
+        5: keyword.other.oracle
+        6: keyword.other.oracle
+        7: support.function.builtin.other.oracle
+        8: keyword.other.oracle
+        9: entity.name.class.oracle
+
+    - match: (?i)\b(cursor)\s*?(\w+)
+      scope: meta.cursor.oracle
+      captures:
+        1: keyword.other.oracle
+        2: entity.name.cursor.oracle
 
     - match: '(?i)^\s*(type)\s+(\w{1,30})\b'
       scope: meta.type.oracle
@@ -47,12 +59,26 @@ contexts:
         1: keyword.other.oracle
         2: entity.name.type.oracle
 
-    - match: '(?i)^\s*(function|procedure)\s+(\w{1,30}|(\w{31,}))\b'
+    - match: '(?i)^\s*((not)?\s*(final|instantiable)\s*)*\s*(static|member|constructor)?\s*(function)\s+(\w{1,30}|(\w{31,}))\b'
       scope: meta.function.oracle
       captures:
-        1: storage.type.function.oracle
-        2: entity.name.function.oracle
-        3: invalid.oracle
+        1: keyword.other.oracle
+        2: keyword.other.oracle
+        3: keyword.other.oracle
+        4: keyword.other.oracle
+        5: storage.type.function.oracle
+        6: entity.name.function.oracle
+        7: invalid.oracle
+    - match: '(?i)^\s*((not)?\s*(final|instantiable)\s*)*\s*(static|member|constructor)?\s*(procedure)\s+(\w{1,30}|(\w{31,}))\b'
+      scope: meta.procedure.oracle
+      captures:
+        1: keyword.other.oracle
+        2: keyword.other.oracle
+        3: keyword.other.oracle
+        4: keyword.other.oracle
+        5: storage.type.procedure.oracle
+        6: entity.name.procedure.oracle
+        7: invalid.oracle
 
     - match: '[!<>:]?=|<>|<|>|\+|(?<!\.)\*|-|(?<!^)/|\|\|'
       scope: keyword.operator.oracle
@@ -69,7 +95,7 @@ contexts:
     - match: (?i)\b(or|and|not|like)\b
       scope: keyword.operator.oracle
 
-    - match: (?i)\b(sysdate|%(isopen|found|notfound|rowcount)|commit|rollback|sqlerrm|sql|sqlcode)\b
+    - match: (?i)\b(sysdate|%(isopen|found|notfound|rowcount)|commit|rollback|sqlerrm|sql|sqlcode|current_user)\b
       scope: support.function.builtin.other.oracle
 
     - match: (?i)\b(avg|collect|corr|corr_\w+|count|covar_(pop|samp)|cume_dist|dense_rank|first|group_id|grouping|grouping_id|last|max|median|min|percentile_cont|percentile_disc|percent_rank|rank|regr_\w+|stats_binomial_test|stats_crosstab|stats_f_test|stats_ks_test|stats_mode|stats_mw_test|stats_one_way_anova|stats_t_test_\w+|stats_wsr_test|stddev|stddev_pop|stddev_samp|sum|var_pop|var_samp|variance)\b
@@ -115,7 +141,7 @@ contexts:
     - match: (?i)\b(connect\s+by\s+(nocycle\s+)?(prior|level)|connect_by_(root|icycle)|level|start\s+with|)\b
       scope: keyword.hierarchical.sql.oracle
     
-    - match: (?i)\b(end|then|deterministic|exception|when|declare|begin|in|out|nocopy|is|as|exit|open|fetch|into|close|subtype|type|rowtype|default|exclusive|mode|lock|record|index\s+by|result_cache)\b
+    - match: (?i)\b(end|then|deterministic|exception|when|declare|begin|in|out|nocopy|is|as|exit|open|fetch|into|close|subtype|type|rowtype|default|exclusive|mode|lock|record|index\s+by|result_cache|final|force|final|instantiable|authid|under)\b
       scope: keyword.other.oracle
     
     - match: (?i)\b(with|select|from|where|order\s+(siblings\s+)?by|group\s+by|rollup|cube|((left|right|cross)\s+(outer\s+)?)?join|on|asc|desc|update|set|insert|into|values|delete|from|distinct|union|minus|intersect|having|limit|table|between|like|of|all|any|exists|rownum|cursor|returning|comment\s+on\s+(table|column))\b
