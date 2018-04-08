@@ -4,11 +4,14 @@ Language definition and execution utilities for Oracle PL/SQL files.
 It is based on the bundle http://code.google.com/p/oracle-textmate-bundle/ 
 
 ## Install
-- Download and extract package. Place it in C:\\Users\\...\\AppData\\Roaming\\Sublime Text 3\\Packages\\
+- Download and extract package. Place it in C:\\Users\\...\\AppData\\Roaming\\Sublime Text 3\\Packages\\OraclePLSQL
 - Install keymaps for the commands (see Example.sublime-keymap for my preferred keys)
 
 ## Build
-To execute your PL/SQL source on your schema with ST3 Build command, you have to create a .sublime-build in your ST3 Users folder file containing something like::
+To execute your PL/SQL source on your schema with ST3 Build command, you have to create a .sublime-build in your ST3 Users folder.
+To create this build file go to Tools -> Build System -> New Build System... .
+
+Example:
 
 ```json
      {
@@ -17,26 +20,26 @@ To execute your PL/SQL source on your schema with ST3 Build command, you have to
         "variants":
         [
             {
-                "dsn": "USERNAME/PASSWORD@SCHEMANAME2",
-                "name": "COMMON SCHEMA 1"
+                "dsn": "<user>/<password>@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=<host>)(PORT=1521)))(CONNECT_DATA=(SID=<sid>)))",
+                "name": "<Name Shown in Sublime>"
             },
             {
                 "dsn": "USERNAME/PASSWORD@SCHEMANAME2",
-                "name": "COMMON SCHEMA 2"
+                "name": "<Name Shown in Sublime>"
             }
         ]
     }
 ```
 
 ## Some other useful settings
-I'm using TOAD standards iof the PLSQL file extentions. To be able to switch between package specification (.pks) and package body (.pkb) file add "pks" and "pkb" to the switch_file commant in the users keymap
+To be able to switch between package spec/header and type spec/body add "pkb", "pks", "tpb", "tps" to the list of extensions.
 
 ```json
 { 
   "keys": ["alt+o"], 
   "command": "switch_file", 
   "args": {
-     "extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "h", "ipp", "inl", "m", "mm", "pkb", "pks"]
+     "extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "h", "ipp", "inl", "m", "mm", "pkb", "pks", "tpb", "tps"]
    } 
 }
 ```
