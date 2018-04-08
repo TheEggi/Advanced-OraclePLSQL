@@ -1,11 +1,10 @@
-# Sublime Text 3 pkackage for editing Oracle SQL and PL/SQL
+# Sublime Text 3 package for editing Oracle SQL and PL/SQL
 
 Language definition and execution utilities for Oracle PL/SQL files.
 It is based on the bundle http://code.google.com/p/oracle-textmate-bundle/ 
 
 ## Install
 - Download and extract package. Place it in C:\\Users\\...\\AppData\\Roaming\\Sublime Text 3\\Packages\\OraclePLSQL
-- Install keymaps for the commands (see Example.sublime-keymap for my preferred keys)
 
 ## Build
 To execute your PL/SQL source on your schema with ST3 Build command, you have to create a .sublime-build in your ST3 Users folder.
