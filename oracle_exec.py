@@ -17,7 +17,7 @@ class OracleExecCommand(execmod.ExecCommand):
             self.entities = oracle_lib.find_entities(self.window.active_view())
             print('123')
             (directory, filename) = os.path.split(self.window.active_view().file_name())
-            cmd = [sql_exec_path, "-s", dsn, "@", os.path.join(sublime.packages_path(), 'OraclePLSQL', 'RunSQL.sql'), '"'+filename+'"']
+            cmd = [sql_exec_path if sql_exec_path else 'sqlplus' , "-s", dsn, "@", os.path.join(sublime.packages_path(), 'OraclePLSQL', 'RunSQL.sql'), '"'+filename+'"']
 
             super(OracleExecCommand, self).run(cmd, None, "^Filename: (.+)$", "^([0-9]+)/([0-9]+) (.+)$", working_dir=directory, **kwargs)
 

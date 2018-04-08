@@ -20,7 +20,9 @@ Example:
         [
             {
                 "dsn": "<user>/<password>@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=<host>)(PORT=1521)))(CONNECT_DATA=(SID=<sid>)))",
-                "name": "<Name Shown in Sublime>"
+                "name": "<Name Shown in Sublime>",
+                // optional setting: - default is "sqlplus". Path to SQLcl can be specified here.
+                "sql_exec_path": "D:/sqldeveloper/sqlcl/bin/sql.exe",
             },
             {
                 "dsn": "USERNAME/PASSWORD@SCHEMANAME2",
