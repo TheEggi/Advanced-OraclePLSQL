@@ -59,16 +59,17 @@ contexts:
         1: keyword.other.oracle
         2: entity.name.type.oracle
 
-    - match: '(?i)^\s*((not)?\s*(final|instantiable)\s*)*\s*(static|member|constructor)?\s*(function|procedure)\s+(\w{1,30}|(\w{31,}))\b'
+    - match: '(?i)^\s*(overriding)?\s*((not)?\s*(final|instantiable)\s*)*\s*(static|member|constructor)?\s*(function|procedure)\s+(\w{1,30}|(\w{31,}))\b'
       scope: meta.function.oracle
       captures:
         1: keyword.other.oracle
         2: keyword.other.oracle
         3: keyword.other.oracle
         4: keyword.other.oracle
-        5: storage.type.function.oracle
-        6: entity.name.function.oracle
-        7: invalid.oracle
+        5: keyword.other.oracle
+        6: storage.type.function.oracle
+        7: entity.name.function.oracle
+        8: invalid.oracle
     # - match: '(?i)^\s*((not)?\s*(final|instantiable)\s*)*\s*(static|member|constructor)?\s*(procedure)\s+(\w{1,30}|(\w{31,}))\b'
     #   scope: meta.procedure.oracle
     #   captures:
