@@ -15,3 +15,12 @@ def find_body(view):
     Find first package body declaration.
     """
     return view.find(r'(?im)create\s+(or\s+replace\s+)?package\s+body\s+', 0)
+
+
+def getPackageName(view):
+    """
+    Find package name
+    """
+    results = []
+    positions = view.find_all(r'(?im)create\s+(?:or\s+replace\s+)?(?:force\s+)?(package(?:\s+body)?|procedure|function|trigger|view|type)\s+(\w+\.)?(\w+)', 0, "$3", results)
+    return results[0];
