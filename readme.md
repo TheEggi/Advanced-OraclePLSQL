@@ -5,6 +5,7 @@ It is based on the bundle http://code.google.com/p/oracle-textmate-bundle/
 
 ## Install
 - Download and extract package. Place it in C:\\Users\\...\\AppData\\Roaming\\Sublime Text 3\\Packages\\OraclePLSQL
+- Make sure that there is no other oracle plsql package installed.
 
 ## Build
 To execute your PL/SQL source on your schema with ST3 Build command, you have to create a .sublime-build in your ST3 Users folder.
