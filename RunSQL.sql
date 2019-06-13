@@ -16,20 +16,20 @@ select t1.line || '/1 Unused variable ''' || t1.name || ''''
       select object_name,
              object_type,
              name,
-             usage_id
+             usage_context_id
         from user_identifiers
        where usage = 'DEFINITION'
          and type in ('PROCEDURE', 'FUNCTION')
-       order by usage_id)
+       order by usage_context_id)
       select distinct
              t1.object_name,
              t1.object_type,
              t1.name,
-             t1.usage_id usage_context_id_begin,
-             first_value(t2.usage_id) over (partition by t1.name order by t2.usage_id asc) - 1 usage_context_id_end
+             t1.usage_context_id usage_context_id_begin,
+             first_value(t2.usage_context_id) over (partition by t1.name order by t2.usage_context_id asc) - 1 usage_context_id_end
         from methods t1
-        join methods t2 on (t2.object_name = t1.object_name and t2.object_type = t1.object_type and t2.usage_id > t1.usage_id)
-       order by t1.usage_id) context_boundaries on (context_boundaries.object_name = t1.object_name and context_boundaries.object_type = t1.object_type)
+        join methods t2 on (t2.object_name = t1.object_name and t2.object_type = t1.object_type and t2.usage_context_id > t1.usage_context_id)
+       order by t1.usage_context_id) context_boundaries on (context_boundaries.object_name = t1.object_name and context_boundaries.object_type = t1.object_type)
  where t1.object_name = '&2'
    and usage = 'DECLARATION'
    and type = 'VARIABLE'

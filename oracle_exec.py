@@ -1,7 +1,6 @@
 import sublime
 import re
 import os.path
-from os.path import dirname, realpath
 from . import oracle_lib
 import Default.exec as execmod
 
@@ -19,7 +18,7 @@ class OracleExecCommand(execmod.ExecCommand):
             self.packageName = oracle_lib.getPackageName(self.window.active_view())
             #print('123')
             (directory, filename) = os.path.split(self.window.active_view().file_name())
-            cmd = [sql_exec_path if sql_exec_path else 'sqlplus' , "-s", dsn, "@", os.path.join(dirname(realpath(__file__)), 'RunSQL.sql'), '"'+filename+'"', self.packageName.upper()]
+            cmd = [sql_exec_path if sql_exec_path else 'sqlplus' , "-s", dsn, "@", os.path.join(sublime.packages_path(), 'OraclePLSQL', 'RunSQL.sql'), '"'+filename+'"', self.packageName.upper()]
             
             super(OracleExecCommand, self).run(cmd, None, "^Filename: (.+)$", "^([0-9]+)/([0-9]+) (.+)$", working_dir=directory, **kwargs)
 
