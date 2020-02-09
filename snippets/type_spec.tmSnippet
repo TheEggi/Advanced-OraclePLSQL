@@ -3,23 +3,20 @@
 <plist version="1.0">
 <dict>
     <key>content</key>
-    <string>
- create or replace package body ${1:name} is
-/** 
-* ${2:--description of the package}
-* @headcom
-*/
+    <string>create or replace type $1 force authid current_user is object (
+/**  
+* ($Rev: $)
+**/
 
 ${3:--local variables here, procedures and functions}
 
-end ${1:name};
-/
+) ${4:--modifiers};
 /</string>
     <key>name</key>
-    <string>Package Body</string>
+    <string>Type Spec</string>
     <key>scope</key>
     <string>source.plsql.oracle</string>
     <key>tabTrigger</key>
-    <string>package body</string>
+    <string>type</string>
 </dict>
 </plist>

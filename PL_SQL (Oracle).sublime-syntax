@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 # http://www.sublimetext.com/docs/3/syntax.html
-name: PL/SQL (Oracle)
+name: Advanced PL/SQL (Oracle)
 file_extensions:
   - sql
   - ddl
@@ -16,6 +16,10 @@ file_extensions:
   - tpb
   - fk
   - view
+
+variables:
+  oracle_exceptions: access_into_null|case_not_found|collection_is_null|cursor_already_open|dup_val_on_index|invalid_cursor|invalid_number|login_denied|no_data_found|not_logged_on|program_error|rowtype_mismatch|self_is_null|storage_error|subscript_beyond_count|subscript_outside_limit|sys_invalid_rowid|timeout_on_resource|too_many_rows|value_error|zero_divide|others
+  end: (?i)\bend\s*(\w*)?\b
 
 scope: source.plsql.oracle
 contexts:
@@ -52,6 +56,7 @@ contexts:
       captures:
         1: keyword.other.oracle
         2: entity.name.cursor.oracle
+      push: cursor
 
     - match: '(?i)^\s*(type)\s+(\w{1,30})\b'
       scope: meta.type.oracle
@@ -90,7 +95,7 @@ contexts:
     - match: \b\d+(\.\d+)?\b
       scope: constant.numeric.oracle
 
-    - match: (?i)\b(if|elsif|else|loop|for|while|case|end\s+case|continue|goto|return)\b
+    - match: (?i)\b(case|end\s+case|continue|goto|return)\b
       scope: keyword.control.oracle
 
     - match: (?i)\b(or|and|not|like)\b
@@ -142,13 +147,13 @@ contexts:
     - match: (?i)\b(connect\s+by\s+(nocycle\s+)?(prior|level)|connect_by_(root|icycle)|level|start\s+with|)\b
       scope: keyword.hierarchical.sql.oracle
     
-    - match: (?i)\b(end|then|deterministic|exception|when|declare|begin|in|out|nocopy|is|as|exit|open|fetch|into|close|subtype|constant|type|rowtype|default|exclusive|mode|lock|record|index\s+by|result_cache|final|force|final|instantiable|authid|under)\b
+    - match: (?i)\b(deterministic|declare|in|out|nocopy|as|exit|open|fetch|into|close|subtype|constant|type|rowtype|default|exclusive|mode|lock|record|index\s+by|result_cache|final|force|final|instantiable|authid|under)\b
       scope: keyword.other.oracle
     
-    - match: (?i)\b(with|select|from|where|order\s+(siblings\s+)?by|group\s+by|rollup|cube|((left|right|cross|inner)\s+(outer\s+)?)?join|on|asc|desc|update|set|insert|into|values|delete|from|distinct|union|minus|intersect|having|limit|table|between|like|of|all|any|exists|rownum|cursor|returning|comment\s+on\s+(table|column))\b
+    - match: (?i)\b(with|select|from|where|order\s+(siblings\s+)?by|group\s+by|rollup|cube|((left|right|cross|inner)\s+(outer\s+)?)?join|on|asc|desc|update|set|insert|into|values|delete|from|distinct|union|minus|intersect|having|limit|table|between|like|of|all|any|exists|rownum|returning|comment\s+on\s+(table|column))\b
       scope: keyword.other.sql.oracle
     
-    - match: (?i)\b(access_into_null|case_not_found|collection_is_null|cursor_already_open|dup_val_on_index|invalid_cursor|invalid_number|login_denied|no_data_found|not_logged_on|program_error|rowtype_mismatch|self_is_null|storage_error|subscript_beyond_count|subscript_outside_limit|sys_invalid_rowid|timeout_on_resource|too_many_rows|value_error|zero_divide|others)\b
+    - match: (?i)\b({{oracle_exceptions}})\b
       scope: support.type.exception.oracle
     
     - match: (?i)\b((dbms|utl|owa)_\w+.(\w+))\b
@@ -199,4 +204,122 @@ contexts:
         - meta_scope: string.quoted.q.oracle
         - match: \!'
           pop: true
-    
+    - match: \(
+      push: brackets
+
+    - match: (?i)\bis\b
+      scope: keyword.block.is.oracle
+      push: declare_block
+
+    - match: (?i)\bif\b
+      scope: keyword.control.oracle
+      push: if_condition_block
+
+    - match: (?i)\bwhile\b
+      scope: keyword.control.oracle
+      push: loop_condition_block
+
+    - match: (?i)\b(for)\s*(.*)\s*(in)\b
+      captures:
+        1: keyword.control.oracle
+        2: variable.loop.oracle
+        3: keyword.other.oracle
+      push: loop_condition_block
+
+    - match: (?i)\belsif\b
+      scope: keyword.control.oracle
+      set: if_condition_block
+
+    - match: (?i)\belse\b
+      scope: keyword.control.oracle
+      set: if_block_end
+
+    - match: (?i)\bbegin\b
+      scope: keyword.block.begin.oracle
+      push: begin_block
+
+    - match: (?i)\b(when)\s+({{oracle_exceptions}}|(.*))\s+(then)\b
+      scope: meta.block.whencondition.oracle
+      captures:
+        1: keyword.other.oracle
+        2: support.type.exception.any
+        3: entity.name.exception.oracle
+        4: keyword.other.oracle
+
+
+    # all the overlapping things!
+    - match: \)
+      scope: invalid.oracle
+    - match: end
+      scope: invalid.oracle
+
+# if|elsif|else|loop|for|while
+  
+  
+  # for/wile.. <... condition block ..> loop
+  loop_condition_block:
+    - meta_content_scope: meta.block.loopcondition.oracle
+    - match: (?i)\bloop\b
+      scope: keyword.block.loop.oracle
+      set: loop_block_end
+  loop_block_end:
+    - meta_content_scope: meta.block.loopblock.oracle
+    - match: (?i)\b(end\s+loop)\b
+      scope: keyword.block.endif.oracle
+      pop: true
+    - include: main
+
+  # if <... if condition block ..> then
+  if_condition_block:
+    - meta_content_scope: meta.block.ifcondition.oracle
+    - match: (?i)\bthen\b
+      scope: keyword.block.beginif.oracle
+      set: if_block_end
+  if_block_end:
+    - meta_content_scope: meta.block.ifblock.oracle
+    - match: (?i)\belse\b
+      scope: keyword.block.else.oracle
+      set: if_block_end
+    - match: (?i)\b(end\s+if)\b
+      scope: keyword.block.endif.oracle
+      pop: true
+    - include: main
+  declare_block:
+    - meta_content_scope: meta.block.declare.oracle
+    - match: (?i)\bbegin\b
+      scope: keyword.block.begin.oracle
+      set: begin_block
+    - include: main
+
+  begin_block:
+    - meta_content_scope: meta.block.begin.oracle
+    - match: '{{end}}'
+      scope: keyword.block.end.oracle
+      captures:
+        1: entity.name.function.oracle
+      pop: true
+    - include: main
+    - meta_content_scope: meta.block.begin.oracle
+    - match: (?i)\bexception\b
+      scope: keyword.other.oracle
+      set: exception_block
+
+  exception_block:
+    - meta_content_scope: meta.block.exception.oracle
+    - match: '{{end}}'
+      captures:
+        1: entity.name.function.oracle
+      scope: keyword.block.end.oracle
+      pop: true
+    - include: main
+
+  cursor:
+    - meta_content_scope: meta.cursor
+    - match: ;
+      scope: keyword.block.is.cursor.oracle
+      pop: true
+
+  brackets:
+    - match: \)
+      pop: true
+    - include: main
