@@ -1,4 +1,4 @@
-# SYNTAX TEST "Packages/OraclePLSQL/PL_SQL (Oracle).sublime-syntax"
+# SYNTAX TEST "Packages/Advanced PLSQL/Advanced PLSQL.sublime-syntax"
 is
 #^ keyword.block.is.oracle
 /*
