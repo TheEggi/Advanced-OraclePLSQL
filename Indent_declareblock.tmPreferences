@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>Indent_isbegin</string>
+	<string>Indent_declareblock</string>
 	<key>scope</key>
-	<string>meta.function.declare.block.oracle</string>
+	<string>keyword.block.beginafterdeclare.oracle</string>
 	<key>settings</key>
 	<dict>
 		<key>decreaseIndentPattern</key>
-		<string>(?i)\b(begin)\b</string>
+		<string>.</string>
 	</dict>
 	<key>uuid</key>
 	<string>6A30BCDD-20CB-4E24-A1DC-5187E6AA36A6</string>

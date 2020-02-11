@@ -1,73 +1,35 @@
 # SYNTAX TEST "Packages/Advanced PLSQL/Advanced PLSQL.sublime-syntax"
-is
-#^ keyword.block.is.oracle
-/*
-*
-asdfasdf
-# <- comment.block.oracle
 
- */
-
-  asdf
-# <- meta.block.declare.oracle
-'test'
-begin
-#^ keyword.block.begin.oracle
-  asdf
-# <- meta.block.begin.oracle
-'test'
-if somthing something
-#^keyword.control.oracle
-  then
-asdfasdf
-# <- meta.block.ifblock.oracle
-    for i in 1 .. 10 loop
-      begin
-
-      exception
-#      ^^^^^^ keyword.other.oracle
-  when others then fail fast!
-#      ^^^^^^ support.type.exception.any
-# <- meta.block.exception.oracle
-      end test;
-#         ^^^^ entity.name.function.oracle
-    end loop;
-  else
-# ^^^^ keyword.block.else.oracle
-end if;
-# ^^^^ keyword.block.endif.oracle
-asdf
-#<- meta.block.begin.oracle
-  begin
-    asdfasdf
-    #<- meta.block.begin.oracle
-  end ;
-end;
-#^^ keyword.block.end.oracle
-
-  ())
-  # ^ invalid.oracle
-/*
- * test test
-# <- comment.block.oracle
- */
-# <- meta.block.begin.oracle
 
 FUNCTION GetAttributeDefRec(pnMsgId           IN     NUMBER,
+--#                        ^ punctuation.section.parameters.begin.oracle
+--                            # <- meta.method.parameters.oracle
+--#                         ^^^^^^^ variable.parameter.oracle
+--#                                           ^^ storage.modifier.parameter.oracle
+--#                                                  ^^^^^^  storage.type.builtin.oracle
                             psProt            IN     VARCHAR2,
+--#                         ^^^^^^ variable.parameter.oracle
+--#                                           ^^ storage.modifier.parameter.oracle
                             pnAtdSid          IN     NUMBER,
                             pbLockMode        IN     BOOLEAN,
                             rRecAttributeDef  IN OUT TRecAttributeDef,
-                            rbErrCode         OUT    BOOLEAN,
+                            rbErrCode         in     BOOLEAN,
                             rsErrText         OUT    VARCHAR2)
+--#                                                          ^ punctuation.section.parameters.end.oracle
   RETURN BOOLEAN IS
-# <- meta.block.begin.oracle
   vRecHelpAttributeDef     TRecAttributeDef;
   vRecHelpAttributeDefLock TRecAttributeDef;
+# <- meta.block.declare.oracle
+
+
+
   --
   CURSOR curGet (nAtdSid NUMBER) IS
-# 
-#                                ^^ meta.cursor
+--#             ^ punctuation.section.parameters.begin.oracle
+  --                        #  ^punctuation.section.parameters.end.oracle
+--#              ^^^^^^^^^^^^^^ meta.cursor.parameters.oracle
+asdf
+--#                              ^^ meta.cursor
     SELECT atdsid      , atdorder    , atdtyp         , atdtypbez   ,
            atddatentyp , atdlaenge   , atdnachkomma   , atdlovgruppe,
            atdstatus   , atdstorno   , atdcreuser     , atdcredat   ,
@@ -75,7 +37,7 @@ FUNCTION GetAttributeDefRec(pnMsgId           IN     NUMBER,
            atdcopy     , atdvalidate
       FROM MIC_ATTRIBUTE_DEFINITION
      WHERE atdsid       = pnAtdSid;
-  --
+# <- meta.block.declare.oracle
   CURSOR curGetLock (nAtdSid NUMBER) IS
     SELECT atdsid      , atdorder    , atdtyp         , atdtypbez   ,
            atddatentyp , atdlaenge   , atdnachkomma   , atdlovgruppe,
@@ -85,6 +47,31 @@ FUNCTION GetAttributeDefRec(pnMsgId           IN     NUMBER,
       FROM MIC_ATTRIBUTE_DEFINITION
      WHERE atdsid       = pnAtdSid
        FOR UPDATE OF atdsid;
+       var test;
+# <- meta.block.declare.oracle
 begin
-# ^^^ keyword
+  asdf
 # <- meta.block.begin.oracle
+  begin
+    if ... test then
+      --# <- meta.block.begin.oracle
+      asdf
+      --# <- meta.block.ifblock.oracle
+      for i in 1 .. 10 loop
+        vstest...
+        --# <- meta.block.loopblock.oracle
+      end loop;
+    end if;
+      --# <- meta.block.begin.oracle
+  end;
+# ^^^ keyword.block.end
+asdfasdf
+
+--# <- meta.block.begin.oracle
+asdfasdf
+end;
+begin
+
+end;
+asdf
+--# <- source.plsql.oracle - meta.block.begin.oracle
