@@ -30,21 +30,21 @@ FUNCTION GetAttributeDefRec(pnMsgId           IN     NUMBER,
 --#              ^^^^^^^^^^^^^^ meta.cursor.parameters.oracle
 asdf
 --#                              ^^ meta.cursor
-    SELECT atdsid      , atdorder    , atdtyp         , atdtypbez   ,
-           atddatentyp , atdlaenge   , atdnachkomma   , atdlovgruppe,
-           atdstatus   , atdstorno   , atdcreuser     , atdcredat   ,
-           atduser     , atdusedat   , atdlockversion , atdworkflow ,
-           atdcopy     , atdvalidate
-      FROM MIC_ATTRIBUTE_DEFINITION
-     WHERE atdsid       = pnAtdSid;
+    SELECT sid      , order    , typ         , typbez   ,
+           datentyp , laenge   , nachkomma   , lovgruppe,
+           status   , storno   , creuser     , credat   ,
+           user     , usedat   , lockversion , workflow ,
+           copy     , validate
+      FROM SOME_TABLE
+     WHERE sid       = pnSid;
 # <- meta.block.declare.oracle
-  CURSOR curGetLock (nAtdSid NUMBER) IS
-    SELECT atdsid      , atdorder    , atdtyp         , atdtypbez   ,
-           atddatentyp , atdlaenge   , atdnachkomma   , atdlovgruppe,
-           atdstatus   , atdstorno   , atdcreuser     , atdcredat   ,
-           atduser     , atdusedat   , atdlockversion , atdworkflow ,
-           atdcopy     , atdvalidate       
-      FROM MIC_ATTRIBUTE_DEFINITION
+  CURSOR curGetLock (nSid NUMBER) IS
+    SELECT sid      , order    , typ         , typbez   ,
+           datentyp , laenge   , nachkomma   , lovgruppe,
+           status   , storno   , creuser     , credat   ,
+           user     , usedat   , lockversion , workflow ,
+           copy     , validate       
+      FROM SOME_TABLE
      WHERE atdsid       = pnAtdSid
        FOR UPDATE OF atdsid;
        var test;
@@ -58,6 +58,7 @@ begin
       asdf
       --# <- meta.block.ifblock.oracle
       for i in 1 .. 10 loop
+
         vstest...
         --# <- meta.block.loopblock.oracle
       end loop;
@@ -74,4 +75,10 @@ begin
 
 end;
 asdf
---# <- source.plsql.oracle - meta.block.begin.oracle
+
+if testapi.findsomething(partnumber => psArtNr,
+                                         asdf => 'CN',
+                                         dd => pdValid,
+                                         vvv => vTypeAttributes) is not null then
+        --#                                                                  ^^^^ keyword.block.beginif.oracle
+        end if;

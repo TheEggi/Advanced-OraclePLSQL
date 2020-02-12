@@ -210,8 +210,18 @@ contexts:
         - meta_scope: string.quoted.q.oracle
         - match: \!'
           pop: true
-    - match: \(
-      push: brackets
+    # - match: \(
+    #   push: brackets
+    #   
+    - match: (?i)\b(is)\s+(null)\b
+      captures:
+        1: keyword.other.oracle
+        2: constant.language.oracle
+    - match: (?i)\b(is)\s+(not)\s+(null)\b
+      captures:
+        1: keyword.other.oracle
+        2: keyword.other.oracle
+        3: constant.language.oracle
 
     - match: (?i)\bis\b
       scope: keyword.block.is.oracle
@@ -255,8 +265,8 @@ contexts:
       push: begin_block
 
     # all the overlapping things!
-    - match: \)
-      scope: invalid.oracle
+    # - match: \)
+    #   scope: invalid.oracle
     - match: end
       scope: invalid.oracle
 
@@ -279,6 +289,7 @@ contexts:
   # if <... if condition block ..> then
   if_condition_block:
     - meta_content_scope: meta.block.ifcondition.oracle
+    - include: main
     - match: (?i)\bthen\b
       scope: keyword.block.beginif.oracle
       set: if_block_end
@@ -395,7 +406,7 @@ contexts:
         - match: (?=%>)
           pop: true
 
-  brackets:
-    - match: \)
-      pop: true
-    - include: main
+  # brackets:
+  #   - match: \)
+  #     pop: true
+  #   - include: main
