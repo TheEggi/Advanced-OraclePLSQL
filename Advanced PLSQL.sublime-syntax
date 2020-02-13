@@ -20,20 +20,18 @@ file_extensions:
 variables:
   oracle_exceptions: access_into_null|case_not_found|collection_is_null|cursor_already_open|dup_val_on_index|invalid_cursor|invalid_number|login_denied|no_data_found|not_logged_on|program_error|rowtype_mismatch|self_is_null|storage_error|subscript_beyond_count|subscript_outside_limit|sys_invalid_rowid|timeout_on_resource|too_many_rows|value_error|zero_divide|others
   end: (?i)\bend\s*(\w*)?\b
-  oracle_base_types: char|varchar2|nchar|nvarchar2|boolean|date|timestamp(\s+with(\s+local)?\s+time\s+zone)?|interval\s+(year\s+to\s+month|day\s+to\s+second)|blob|clob|nclob|bfile|long|long\s+raw|raw|number|integer|float|binary_(float|double|integer)|pls_(float|double|integer)|rowid|urowid|vararray
 
 scope: source.plsql.oracle
 contexts:
   main:
-    - include: prototype
-    # - match: /\*
-    #   push:
-    #     - meta_scope: comment.block.oracle
-    #     - match: \*/
-    #       pop: true
+    - match: /\*
+      push:
+        - meta_scope: comment.block.oracle
+        - match: \*/
+          pop: true
 
-    # - match: "--.*$"
-    #   scope: comment.line.double-dash.oracle
+    - match: "--.*$"
+      scope: comment.line.double-dash.oracle
 
     - match: (?i)^\s*(create)(\s+or\s+replace)?\s+
       scope: meta.create.oracle
@@ -53,14 +51,12 @@ contexts:
         8: keyword.other.oracle
         9: entity.name.class.oracle
 
-
-    - match: (?i)\b(cursor)\s*?(\w+)\s*(\()
+    - match: (?i)\b(cursor)\s*?(\w+)
       scope: meta.cursor.oracle
       captures:
         1: keyword.other.oracle
         2: entity.name.cursor.oracle
-        3: punctuation.section.parameters.begin.oracle
-      push: cursor_section
+      push: cursor
 
     - match: '(?i)^\s*(type)\s+(\w{1,30})\b'
       scope: meta.type.oracle
@@ -68,7 +64,7 @@ contexts:
         1: keyword.other.oracle
         2: entity.name.type.oracle
 
-    - match: '(?i)^\s*(overriding)?\s*((not)?\s*(final|instantiable)\s*)*\s*(static|member|constructor)?\s*(function|procedure)\s+(\w{1,30}|(\w{31,}))\s*(\()'
+    - match: '(?i)^\s*(overriding)?\s*((not)?\s*(final|instantiable)\s*)*\s*(static|member|constructor)?\s*(function|procedure)\s+(\w{1,30}|(\w{31,}))\b'
       scope: meta.function.oracle
       captures:
         1: keyword.other.oracle
@@ -79,8 +75,6 @@ contexts:
         6: storage.type.function.oracle
         7: entity.name.function.oracle
         8: invalid.oracle
-        9: punctuation.section.parameters.begin.oracle
-      push: params
     # - match: '(?i)^\s*((not)?\s*(final|instantiable)\s*)*\s*(static|member|constructor)?\s*(procedure)\s+(\w{1,30}|(\w{31,}))\b'
     #   scope: meta.procedure.oracle
     #   captures:
@@ -153,7 +147,7 @@ contexts:
     - match: (?i)\b(connect\s+by\s+(nocycle\s+)?(prior|level)|connect_by_(root|icycle)|level|start\s+with|)\b
       scope: keyword.hierarchical.sql.oracle
     
-    - match: (?i)\b(deterministic|as|exit|open|fetch|into|close|subtype|constant|type|rowtype|default|exclusive|mode|lock|record|index\s+by|result_cache|final|force|final|instantiable|authid|under)\b
+    - match: (?i)\b(deterministic|declare|in|out|nocopy|as|exit|open|fetch|into|close|subtype|constant|type|rowtype|default|exclusive|mode|lock|record|index\s+by|result_cache|final|force|final|instantiable|authid|under)\b
       scope: keyword.other.oracle
     
     - match: (?i)\b(with|select|from|where|order\s+(siblings\s+)?by|group\s+by|rollup|cube|((left|right|cross|inner)\s+(outer\s+)?)?join|on|asc|desc|update|set|insert|into|values|delete|from|distinct|union|minus|intersect|having|limit|table|between|like|of|all|any|exists|rownum|returning|comment\s+on\s+(table|column))\b
@@ -170,7 +164,7 @@ contexts:
     - match: (?i)\b(raise|raise_application_error)\b
       scope: support.function.oracle
 
-    - match: (?i)\b({{oracle_base_types}})\b
+    - match: (?i)\b(char|varchar2|nchar|nvarchar2|boolean|date|timestamp(\s+with(\s+local)?\s+time\s+zone)?|interval\s+(year\s+to\s+month|day\s+to\s+second)|blob|clob|nclob|bfile|long|long\s+raw|raw|number|integer|float|binary_(float|double|integer)|pls_(float|double|integer)|rowid|urowid|vararray)\b
       scope: storage.type.builtin.oracle
 
     - match: (?i)\b(define|drop|cascade|tablespace|identified\s+by)|((materialized\s+)?view|sequence|trigger|grant|revoke|unique|index)\b
@@ -210,18 +204,8 @@ contexts:
         - meta_scope: string.quoted.q.oracle
         - match: \!'
           pop: true
-    # - match: \(
-    #   push: brackets
-    #   
-    - match: (?i)\b(is)\s+(null)\b
-      captures:
-        1: keyword.other.oracle
-        2: constant.language.oracle
-    - match: (?i)\b(is)\s+(not)\s+(null)\b
-      captures:
-        1: keyword.other.oracle
-        2: keyword.other.oracle
-        3: constant.language.oracle
+    - match: \(
+      push: brackets
 
     - match: (?i)\bis\b
       scope: keyword.block.is.oracle
@@ -250,7 +234,9 @@ contexts:
       scope: keyword.control.oracle
       set: if_block_end
 
-    
+    - match: (?i)\bbegin\b
+      scope: keyword.block.begin.oracle
+      push: begin_block
 
     - match: (?i)\b(when)\s+({{oracle_exceptions}}|(.*))\s+(then)\b
       scope: meta.block.whencondition.oracle
@@ -260,13 +246,10 @@ contexts:
         3: entity.name.exception.oracle
         4: keyword.other.oracle
 
-    - match: (?i)\bbegin\b
-      scope: keyword.block.begin.oracle
-      push: begin_block
 
     # all the overlapping things!
-    # - match: \)
-    #   scope: invalid.oracle
+    - match: \)
+      scope: invalid.oracle
     - match: end
       scope: invalid.oracle
 
@@ -289,7 +272,6 @@ contexts:
   # if <... if condition block ..> then
   if_condition_block:
     - meta_content_scope: meta.block.ifcondition.oracle
-    - include: main
     - match: (?i)\bthen\b
       scope: keyword.block.beginif.oracle
       set: if_block_end
@@ -305,7 +287,7 @@ contexts:
   declare_block:
     - meta_content_scope: meta.block.declare.oracle
     - match: (?i)\bbegin\b
-      scope: keyword.block.beginafterdeclare.oracle
+      scope: keyword.block.begin.oracle
       set: begin_block
     - include: main
 
@@ -331,82 +313,13 @@ contexts:
       pop: true
     - include: main
 
-  cursor_section:
-    - meta_content_scope: meta.cursor.parameters.oracle
-    - match: \)
-      scope: meta.cursor.parameters.oracle punctuation.section.parameters.end.oracle
-      set: cursor_content
-    - match: (?=\S)
-      push: [param_type, param]
-
-
-
-  cursor_content:
-    - match: (?i)\bis\b
-      scope: keyword.other.oracle
-    - include: main
+  cursor:
     - meta_content_scope: meta.cursor
-    - match: \;
-      scope: keyword.other.oracle
+    - match: ;
+      scope: keyword.block.is.cursor.oracle
       pop: true
-    
 
-  params:
-    - meta_content_scope: meta.method.parameters.oracle
+  brackets:
     - match: \)
-      scope: meta.method.parameters.oracle punctuation.section.parameters.end.oracle
       pop: true
-    - match: (?=\S)
-      push: [param_type, param]
-
-  param_type:
-    - match: (?i)({{oracle_base_types}}|(\w+))
-      captures:
-        1: storage.type.builtin.oracle
-        2: storage.type.class
-    - match: \,
-      scope: punctuation.separator.parameter.function.cs
-      pop: true
-    - match: (?=\))
-      pop: true
-
-  param:
-    - match: (?i)\S+
-      scope: variable.parameter.oracle
-    - match: (?i)\s+(in\s+out\s+nocopy|in\s+out|out\s+nocopy|in|out)?
-      scope: storage.modifier.parameter.oracle
-      pop: true
-
-
-
-  prototype:
-    - match: (?=%>)
-      pop: true
-    - include: comments
-
-  comments:
-    - match: /\*\*/
-      scope: comment.block.empty.oracle punctuation.definition.comment.oracle
-    - include: scope:text.html.oracledoc
-    - include: comments-inline
-  comments-inline:
-    - match: /\*
-      scope: punctuation.definition.comment.oracle
-      push:
-        - meta_scope: comment.block.oracle
-        - match: \*/
-          scope: punctuation.definition.comment.oracle
-          pop: true
-    - match: --
-      scope: punctuation.definition.comment.oracle
-      push:
-        - meta_scope: comment.line.double-dash.oracle
-        - match: \n
-          pop: true
-        - match: (?=%>)
-          pop: true
-
-  # brackets:
-  #   - match: \)
-  #     pop: true
-  #   - include: main
+    - include: main
