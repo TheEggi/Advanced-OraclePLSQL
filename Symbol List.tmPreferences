@@ -5,7 +5,7 @@
     <key>name</key>
     <string>Symbol List</string>
     <key>scope</key>
-    <string>source.plsql.oracle entity.name.function.oracle,source.plsql.oracle entity.name.procedure.oracle, source.plsql.oracle meta.package.oracle, source.plsql.oracle meta.type.oracle</string>
+    <string>source.plsql.oracle entity.name.function.oracle,source.plsql.oracle entity.name.procedure.oracle, source.plsql.oracle meta.package.oracle, source.plsql.oracle meta.type.oracle </string>
     <key>settings</key>
     <dict>
         <key>showInSymbolList</key>

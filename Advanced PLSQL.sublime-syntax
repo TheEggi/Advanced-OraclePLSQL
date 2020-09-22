@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 # http://www.sublimetext.com/docs/3/syntax.html
-name: PL/SQL (Oracle)
+name: Advanced PLSQL
 file_extensions:
   - sql
   - ddl

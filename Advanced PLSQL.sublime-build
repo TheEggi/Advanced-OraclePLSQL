@@ -1,0 +1,15 @@
+{
+  "selector": "source.plsql.oracle",
+  "target": "oracle_exec",
+  "variants": [
+    {
+      "dsn": "<user>/<password>@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=<host>)(PORT=1521)))(CONNECT_DATA=(SID=<sid>)))",
+      "name": "<Name Shown in Sublime>",
+      "sql_exec_path": "D:/sqldeveloper/sqlcl/bin/sql.exe"
+    },
+    {
+      "dsn": "USERNAME/PASSWORD@SCHEMANAME2",
+      "name": "<Name Shown in Sublime>"
+    }
+  ]
+}

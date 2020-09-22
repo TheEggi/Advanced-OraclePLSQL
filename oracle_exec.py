@@ -27,7 +27,7 @@ class OracleExecCommand(execmod.ExecCommand):
 
             #print('123')
             (directory, filename) = os.path.split(self.window.active_view().file_name())
-            cmd = [sql_exec_path if sql_exec_path else 'sqlplus' , "-s", dsn, "@", os.path.join(sublime.packages_path(), 'OraclePLSQL', 'RunSQL.sql'), '"'+filename+'"', self.packageName.upper(), self.objectType.upper()]
+            cmd = [sql_exec_path if sql_exec_path else 'sqlplus' , "-s", dsn, "@", os.path.join(sublime.packages_path(), 'Advanced PLSQL', 'RunSQL.sql'), '"'+filename+'"', self.packageName.upper(), self.objectType.upper()]
 
             errors = 0
             warnings = 0

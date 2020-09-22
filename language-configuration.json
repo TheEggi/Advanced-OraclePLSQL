@@ -1,0 +1,39 @@
+{
+    "comments": {
+        // symbol used for single line comment. Remove this entry if your language does not support line comments
+        "lineComment": "--",
+        // symbols used for start and end a block comment. Remove this entry if your language does not support block comments
+        "blockComment": [ "/*", "*/" ] 
+    },
+    // symbols used as brackets
+    "brackets": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"] 
+    ],
+    // symbols that are auto closed when typing
+    "autoClosingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["\"", "\""],
+        { "open": "'", "close": "'", "notIn": ["string", "comment"] }
+    ],
+    // symbols that that can be used to surround a selection
+    "surroundingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["\"", "\""],
+        ["'", "'"] 
+    ],
+    "folding": {
+        "markers": {
+            "offSide"  :true,
+            "start" : "^\\s*[Bb][Ee][Gg][Ii][nN]\\b", // Begin should be first word on the line casing doesn't matter and if spaces come before it            
+            // thats also ok  Due the the limitation that code folding marker here  are case sensitive and regex standard options are not working 
+            //we had to resort to this awkward solution to handle casing issue
+            "end" : "^\\s*[eE][Nn][Dd]\\b", // end should be first word on the line casing doesn't matter and if spaces come before it thats also ok
+        }
+    }  
+}

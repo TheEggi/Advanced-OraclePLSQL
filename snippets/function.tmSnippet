@@ -15,7 +15,7 @@ begin
   $6
 end ${1:name};</string>
 	<key>name</key>
-	<string>New Function</string>
+	<string>function</string>
 	<key>scope</key>
 	<string>source.plsql.oracle</string>
 	<key>tabTrigger</key>

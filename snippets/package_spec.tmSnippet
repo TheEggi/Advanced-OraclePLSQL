@@ -6,20 +6,11 @@
     <string>create or replace package ${1:name} authid current_user is
 /** 
 * ${2:--description of the package}
+* ($Rev: $)
 * @headcom
 */
 
 ${3:--local variables here, procedures and functions}
-
-
-/**
-* Used to determine package version.
-* 
-* @return Returns version of package.
-*/
-function getPackageVersion
-  return varchar2;
-
 
 end ${1:name};
 /</string>
