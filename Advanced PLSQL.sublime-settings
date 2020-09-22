@@ -1,0 +1,13 @@
+{
+  // warnings section
+  "warnings": {
+    // Define if warnings should be displayed or not
+    "showWarnings": false,
+    // Specify which PL warning you want to see (e.g. ALL)
+    // You can also name specific PLW numbers (e.g. PLW-07206: analysis suggests that the assignment to 'VARIABLE' may be unnecessary)
+    "enabled": "ALL",
+    // Disable specific PL warnings which you don't want to be shown
+    // (e.g. PLW-05021: exception string does not have a pragma EXCEPTION_INIT)
+    "disabled": ["5021"]
+  }
+}
