@@ -26,7 +26,6 @@ class OracleExecCommand(execmod.ExecCommand):
 
             self.plsql_warnings = 'DISABLE:ALL'
             settings = sublime.load_settings("Advanced PLSQL.sublime-settings")
-            print(settings)
             if settings.has("warnings"):
                 warningSettings = settings.get("warnings")
                 showWarnings = warningSettings.get("showWarnings", False)
@@ -40,8 +39,6 @@ class OracleExecCommand(execmod.ExecCommand):
                     self.plsql_warnings = 'ENABLE:' + warningsEnabled
                     if warningsDisabled != "":
                         self.plsql_warnings += ', DISABLE:' + warningsDisabled;
-
-            print(self.plsql_warnings)
 
             (directory, filename) = os.path.split(self.window.active_view().file_name())
             cmd = [sql_exec_path if sql_exec_path else 'sqlplus' , "-s", dsn, "@", os.path.join(sublime.packages_path(), 'Advanced PLSQL', 'RunSQL.sql'), '"'+filename+'"', '"' + self.packageName.upper() + '"', '"' + self.objectType.upper() + '"', '"' + self.plsql_warnings + '"']
