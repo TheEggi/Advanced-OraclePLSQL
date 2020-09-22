@@ -3,7 +3,7 @@ SET PAGESIZE 0
 SET VERIFY OFF
 SET FEEDBACK OFF
 
-alter session set plsql_warnings='ENABLE:ALL, DISABLE:(5021)';
+alter session set plsql_warnings='&4';
 
 @&1
 
@@ -14,6 +14,5 @@ select decode(line, 0, 1, line) || '/' || position || ' [' || ATTRIBUTE || '] ' 
   from user_errors
  where name = '&2'
    and type = '&3';
-
 
 EXIT

@@ -11,6 +11,7 @@ RE_ENTITIES = re.compile("^([0-9]+)/([0-9]+) \\[(WARNING|ERROR)\\] (.+)$", re.M)
 
 errors = 0
 warnings = 0
+showWarnings = False
 
 class OracleExecCommand(execmod.ExecCommand):
     def run(self, dsn="", sql_exec_path="", **kwargs):
@@ -23,11 +24,27 @@ class OracleExecCommand(execmod.ExecCommand):
             self.packageName = oracle_lib.getPackageName(self.window.active_view())
             self.objectType = oracle_lib.getObjectType(self.window.active_view())
 
-            print(self.objectType)
+            self.plsql_warnings = 'DISABLE:ALL'
+            settings = sublime.load_settings("Advanced PLSQL.sublime-settings")
+            print(settings)
+            if settings.has("warnings"):
+                warningSettings = settings.get("warnings")
+                showWarnings = warningSettings.get("showWarnings", False)
+                if showWarnings == True:
+                    warningsEnabled = warningSettings.get("enabled", "ALL")
+                    warningsDisabled = warningSettings.get("disabled", "")
+                    if warningsEnabled != "ALL":
+                        warningsEnabled = "(" + ",".join(warningsEnabled) + ")"
+                    if warningsDisabled != "" and warningsDisabled != "ALL":
+                        warningsDisabled = "(" + ",".join(warningsDisabled) + ")"
+                    self.plsql_warnings = 'ENABLE:' + warningsEnabled
+                    if warningsDisabled != "":
+                        self.plsql_warnings += ', DISABLE:' + warningsDisabled;
 
-            #print('123')
+            print(self.plsql_warnings)
+
             (directory, filename) = os.path.split(self.window.active_view().file_name())
-            cmd = [sql_exec_path if sql_exec_path else 'sqlplus' , "-s", dsn, "@", os.path.join(sublime.packages_path(), 'Advanced PLSQL', 'RunSQL.sql'), '"'+filename+'"', self.packageName.upper(), self.objectType.upper()]
+            cmd = [sql_exec_path if sql_exec_path else 'sqlplus' , "-s", dsn, "@", os.path.join(sublime.packages_path(), 'Advanced PLSQL', 'RunSQL.sql'), '"'+filename+'"', '"' + self.packageName.upper() + '"', '"' + self.objectType.upper() + '"', '"' + self.plsql_warnings + '"']
 
             errors = 0
             warnings = 0
