@@ -7,14 +7,10 @@
 * ${1:--description}
 * 
 */
-procedure ${2:name}(${3:--parameters})
-is
-${4:--variables}
-begin
-  $5
-end ${2:name};</string>
+procedure ${2:name}(${3:--parameters});
+</string>
 	<key>name</key>
-	<string>procedure</string>
+	<string>procedure spec</string>
 	<key>scope</key>
 	<string>source.plsql.oracle</string>
 	<key>tabTrigger</key>

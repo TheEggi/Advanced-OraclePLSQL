@@ -13,7 +13,7 @@ is
 ${5:--variables}
 begin
   $6
-end ${1:name};</string>
+end ${2:name};</string>
 	<key>name</key>
 	<string>function</string>
 	<key>scope</key>
