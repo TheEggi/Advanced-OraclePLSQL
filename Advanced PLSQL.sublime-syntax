@@ -99,7 +99,7 @@ contexts:
     - match: (?i)\b(sysdate|%(isopen|found|notfound|rowcount)|commit|rollback|sqlerrm|sql|sqlcode|current_user)\b
       scope: support.function.builtin.other.oracle
 
-    - match: (?i)\b(avg|collect|corr|corr_\w+|count|covar_(pop|samp)|cume_dist|dense_rank|first|group_id|grouping|grouping_id|last|max|median|min|percentile_cont|percentile_disc|percent_rank|rank|regr_\w+|stats_binomial_test|stats_crosstab|stats_f_test|stats_ks_test|stats_mode|stats_mw_test|stats_one_way_anova|stats_t_test_\w+|stats_wsr_test|stddev|stddev_pop|stddev_samp|sum|var_pop|var_samp|variance)\b
+    - match: (?i)\b(avg|bulk|collect|corr|corr_\w+|count|covar_(pop|samp)|cume_dist|dense_rank|first|group_id|grouping|grouping_id|last|max|median|min|percentile_cont|percentile_disc|percent_rank|rank|regr_\w+|stats_binomial_test|stats_crosstab|stats_f_test|stats_ks_test|stats_mode|stats_mw_test|stats_one_way_anova|stats_t_test_\w+|stats_wsr_test|stddev|stddev_pop|stddev_samp|sum|var_pop|var_samp|variance)\b
       scope: support.function.builtin.aggregate.oracle
 
     - match: (?i)\b(ascii|asciistr|chr|compose|concat|convert|decompose|dump|initcap|instr|instrb|instrc|instr2|instr4|length|lengthb|lengthc|length2|length4|lower|lpad|ltrim|nchr|replace|rpad|rtrim|soundex|substr|translate|trim|upper|vsize)\b
@@ -142,7 +142,7 @@ contexts:
     - match: (?i)\b(connect\s+by\s+(nocycle\s+)?(prior|level)|connect_by_(root|icycle)|level|start\s+with|)\b
       scope: keyword.hierarchical.sql.oracle
     
-    - match: (?i)\b(end|then|deterministic|exception|when|declare|begin|in|out|nocopy|is|as|exit|open|fetch|into|close|subtype|constant|type|rowtype|default|exclusive|mode|lock|record|index\s+by|result_cache|final|force|final|instantiable|authid|under)\b
+    - match: (?i)\b(end|then|deterministic|exception|exec|execute|immediate|when|declare|begin|in|out|nocopy|is|as|exit|open|fetch|into|close|subtype|constant|type|rowtype|default|exclusive|mode|lock|record|index\s+by|result_cache|final|force|final|instantiable|authid|under|using)\b
       scope: keyword.other.oracle
     
     - match: (?i)\b(with|select|from|where|order\s+(siblings\s+)?by|group\s+by|rollup|cube|((left|right|cross|inner)\s+(outer\s+)?)?join|on|asc|desc|update|set|insert|into|values|delete|from|distinct|union|minus|intersect|having|limit|table|between|like|of|all|any|exists|rownum|cursor|returning|comment\s+on\s+(table|column))\b

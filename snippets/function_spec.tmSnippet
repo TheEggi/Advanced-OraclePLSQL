@@ -7,19 +7,15 @@
 * ${1:--description}
 * 
 */
-procedure ${2:name}(${3:--parameters})
-is
-${4:--variables}
-begin
-  $5
-end ${2:name};</string>
+function ${2:name}(${3:--parameters})
+return ${4:--return type};</string>
 	<key>name</key>
-	<string>procedure</string>
+	<string>function spec</string>
 	<key>scope</key>
 	<string>source.plsql.oracle</string>
 	<key>tabTrigger</key>
-	<string>procedure</string>
+	<string>function</string>
 	<key>uuid</key>
-	<string>9C4245C0-3B0F-4285-89EF-3256D30F973D</string>
+	<string>5873A2DA-C72C-40DB-8859-368CA8B3809E</string>
 </dict>
 </plist>
