@@ -47,7 +47,7 @@ contexts:
         8: keyword.other.oracle
         9: entity.name.class.oracle
 
-    - match: (?i)\b(cursor)\s*?(\w+)
+    - match: (?i)\b(cursor)\s+?(\w+)
       scope: meta.cursor.oracle
       captures:
         1: keyword.other.oracle
