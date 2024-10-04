@@ -129,11 +129,6 @@ contexts:
     - match: (?i)\b(pragma\s+(autonomous_transaction|serially_reusable|restrict_references|exception_init|inline))\b
       scope: keyword.other.pragma.oracle
     
-    - match: '(?i)\b(p(?:(i|o|io))?_(\w{1,27}|(\w{28,})))\b'
-      scope: variable.parameter.oracle
-      captures:
-        4: invalid.oracle
-    
     - match: '(?i)\b((l|g)_(\w{1,27}|(\w{28,})))\b'
       scope: variable.standard.oracle
       captures:
