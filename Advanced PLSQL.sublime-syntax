@@ -96,7 +96,7 @@ contexts:
     - match: (?i)\b(or|and|not|like)\b
       scope: keyword.operator.oracle
 
-    - match: (?i)\b(sysdate|%(isopen|found|notfound|rowcount)|commit|rollback|sqlerrm|sql|sqlcode|current_user)\b
+    - match: (?i)\b(sysdate|%(isopen|found|notfound|rowcount)|commit|rollback|sqlerrm|sql|sqlcode|definer|current_user)\b
       scope: support.function.builtin.other.oracle
 
     - match: (?i)\b(avg|bulk|collect|corr|corr_\w+|count|covar_(pop|samp)|cume_dist|dense_rank|first|group_id|grouping|grouping_id|last|max|median|min|percentile_cont|percentile_disc|percent_rank|rank|regr_\w+|stats_binomial_test|stats_crosstab|stats_f_test|stats_ks_test|stats_mode|stats_mw_test|stats_one_way_anova|stats_t_test_\w+|stats_wsr_test|stddev|stddev_pop|stddev_samp|sum|var_pop|var_samp|variance)\b
@@ -157,7 +157,7 @@ contexts:
     - match: (?i)\b(char|varchar2|nchar|nvarchar2|boolean|date|timestamp(\s+with(\s+local)?\s+time\s+zone)?|interval\s+(year\s+to\s+month|day\s+to\s+second)|blob|clob|nclob|bfile|long|long\s+raw|raw|number|integer|float|binary_(float|double|integer)|pls_(float|double|integer)|rowid|urowid|vararray)\b
       scope: storage.type.builtin.oracle
 
-    - match: (?i)\b(define|drop|cascade|tablespace|identified\s+by)|((materialized\s+)?view|sequence|trigger|grant|revoke|unique|index)\b
+    - match: (?i)\b(define|drop|cascade|tablespace|identified\s+by|(materialized\s+)?view|sequence|trigger|grant|revoke|unique|index)\b
       scope: keyword.other.oracle
     
     - match: "'"
